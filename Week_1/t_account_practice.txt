@@ -1,0 +1,48 @@
+T-ACCOUNT PRACTICE - INTEREST
+==============================
+
+SCENARIO:
+Your company has a $50,000 loan from the bank.
+At the end of March, you owe $1,500 in interest.
+You don't pay it until April 15th.
+
+PART 1: March 31 - Record the interest you owe (but haven't paid yet)
+
+What accounts are affected?
+- Interest Expense goes _____ (UP/DOWN)
+- Interest Payable goes _____ (UP/DOWN)
+
+Fill in the T-accounts:
+
+   Interest Expense (Expense)         Interest Payable (Liability)
+    ___________________               ___________________
+    |         |         |             |         |         |
+    |1500     |         |             |         |1500     |
+    |_________|_________|             |_________|_________|
+       Debit     Credit                  Debit     Credit
+
+
+PART 2: April 15 - Pay the interest to the bank
+
+What accounts are affected?
+- Interest Payable goes _____ (UP/DOWN)
+- Cash goes _____ (UP/DOWN)
+
+Fill in the T-accounts:
+
+    Interest Payable (Liability)           Cash (Asset)
+    ___________________               ___________________
+    |         |         |             |         |         |
+    | 1500    |         |             |         |1500     |
+    |_________|_________|             |_________|_________|
+       Debit     Credit                  Debit     Credit
+
+
+QUESTIONS:
+1. Why do we need two entries instead of one?
+2. Do Debits = Credits in each entry?
+
+
+YOUR ANSWERS:
+_____________________________________________
+_____________________________________________
