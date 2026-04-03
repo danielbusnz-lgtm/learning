@@ -1,0 +1,359 @@
+Lecture 9 (March 9)
+
+Reading: Section 3.4
+Viewing: Lecture 9
+For vectors v1, . . . , vn ∈Rm, recall that the subspace V spanned by these vectors was explained
+in Deﬁnition 5. Speciﬁcally, vectors in the subspace V ⊂Rm are arbitrary linear combinations:
+α1v1 + · · · + αnvn
+(73)
+for various scalars α1, . . . , αn. But what if one of the vectors v1, . . . , vn was itself a linear combi-
+nation of the other vectors? For example, we could have:
+vi = β1v1 + · · · + βi−1vi−1 + βi+1vi+1 + · · · + βnvn
+for some i ∈{1, . . . , n}. Then any linear combination of the form (73) can be written as a linear
+combination of the vectors v1, . . . , vi−1, vi+1, . . . , vn only:
+α1v1+· · ·+αi−1vi−1+αi (β1v1 + · · · + βi−1vi−1 + βi+1vi+1 + · · · + βnvn)
+|
+{z
+}
+vi
++αi+1vi+1+· · ·+αnvn =
+= (α1 + αiβ1)v1 + · · · + (αi−1 + αiβi−1)vi−1 + (αi+1 + αiβi+1)vi+1 + · · · + (αn + αiβn)vn
+So we don’t need the vector vi to span the subspace V ⊂Rm: this subspace is in fact spanned by
+the slightly smaller collection of vectors v1, . . . , vi−1, vi+1, . . . , vn.
+Deﬁnition 8. Vectors v1, . . . , vn ∈Rm are called (linearly) independent if none of them is a
+linear combination of the others. Equivalently, this means that any linear combination is non-zero:
+α1v1 + · · · + αnvn ̸= 0
+(74)
+except for the zero combination (namely the one where α1 = · · · = αn = 0).
+If the vectors v1, . . . , vn ∈Rm are not independent, we call them (linearly) dependent, which
+means that there exists a linear combination:
+α1v1 + · · · + αnvn = 0
+(75)
+where not all the α1, . . . , αn are 0. For example, if αi ̸= 0, then we can rewrite equation (75) as:
+vi = −α1
+αi
+v1 −· · · −αi−1
+αi
+vi−1 −αi+1
+αi
+vi+1 −· · · −αn
+αi
+vn
+We conclude that a collection of vectors is linear dependent precisely when one of them can be
+written as a linear combination of the others.
+For example, the two vectors:
+
+
+2
+5
+1
+
+
+and
+
+
+1
+−3
+−1
+
+
+(76)
+32
+are linearly independent, because otherwise one of them would be a linear combination (i.e. a
+multiple) of the other, and this is visibly not true. Geometrically, we can see this because the two
+vectors above are not on the same line passing through the origin. However, the three vectors:
+
+
+2
+5
+1
+
+
+and
+
+
+1
+−3
+−1
+
+
+and
+
+
+4
+−1
+−1
+
+
+(77)
+are linearly dependent, because the following linear combination is 0:
+1 ·
+
+
+2
+5
+1
+
++ 2 ·
+
+
+1
+−3
+−1
+
+−1 ·
+
+
+4
+−1
+−1
+
+= 0
+(78)
+Alternatively, you could think of this as saying that one of the three vectors is a linear combination
+of the other two vectors, e.g.:
+
+
+4
+−1
+−1
+
+= 1 ·
+
+
+2
+5
+1
+
++ 2 ·
+
+
+1
+−3
+−1
+
+
+(79)
+Deﬁnition 9. A basis of a vector space V is a collection of independent vectors which span V .
+For example, both the collection (76) and the collection (77) span the plane:
+n
+(x, y, z) such that 2x −3y + 11z = 0
+o
+⊂R3
+(80)
+But among these two collections of vectors, only (76) is a basis, because they are linearly indepen-
+dent. The collection of vectors (77) is not a basis, because each of the three vectors in (77) can
+be written as a linear combination of the other two (see (79)). So any of these three vectors is re-
+dundant in spanning the plane (80), and that is why we don’t need all three of them to have a basis.
+Remark. A basis of any vector space is not unique. In fact, any collection of two of the three
+vectors in (77) form a basis of the subspace (80).
+Deﬁnition 10. The dimension of a vector space V is the number of vectors in a basis of V .
+Implicit in the Deﬁnition above is that all bases of a vector space (and there are inﬁnitely many
+of them, see the Remark above) have the same number of vectors in them. The abstract notion
+of dimension introduced above precisely matches our usual, geometric, notion of dimension: a line
+has dimension 1 (it is spanned by a single vector) and a plane has dimension 2 (it is spanned by
+two vectors, for example the plane (80) with the basis (76)).
+So, practically, how can we tell when a collection of vectors v1, . . . , vn is linearly independent?
+And if they are not linearly independent, how can we remove some of these vectors, in such a way
+as to obtain a basis of the subspace they span? The way to answer both of these questions is to
+construct the m × n matrix whose columns are the vectors in question:
+A =
+
+v1
+. . .
+vn
+
+(81)
+33
+For any vector w =
+
+
+α1
+...
+αn
+
+, we have seen that:
+Aw = α1v1 + · · · + αnvn
+(82)
+Therefore, the vectors v1, . . . , vn are linearly independent if and only if Aw = 0 happens only when
+w = 0, or in other words, if N(A) = 0. Conversely, the vectors are dependent precisely when there
+exists w ̸= 0 such that Aw = 0. So to ﬁnd a linear combination (82) which is 0, one only needs
+to ﬁnd a non-zero vector w ∈N(A), and this can be done by putting A in reduced row echelon form.
+More concretely, given a collection of vectors v1, . . . , vn, how do we ﬁnd a subset of them which are
+linearly independent and thus give a basis of the vector subspace they span? Simple: put the given
+vectors into a matrix A (see (81)), put A in row echelon form, identify the pivot columns, and look
+at the corresponding columns of A. Those will be a basis. For example, consider the matrix:
+A =
+
+
+2
+1
+4
+5
+−3
+−1
+1
+−1
+−1
+
+
+REF
+⇝
+U =
+
+
+2
+1
+4
+0
+−5.5
+−11
+0
+0
+0
+
+
+The pivot columns are the ﬁrst and second ones, so the upshot is that a basis of C(A) consists of
+the ﬁrst two columns of A. This is precisely the basis we found in (76).
+Fact 7. The rank of the matrix A (i.e. the number of pivot columns) equals the dimension of C(A).
+Above, we saw how to ﬁnd a basis of the vector space spanned by a collection of vectors v1, . . . , vn.
+But there are other ways to present vector spaces, namely by equations. For example consider:
+V =
+n
+2x −2y −6z −4t = 5x + y −3z + 8t = −3x + 2y + 7z + 3t = 0
+o
+⊂R4
+Since V is cut out by three equations in four unknowns, it is tempting to believe that V is one-
+dimensional. But not so fast, since there may be redundancy in these equations! Let’s ﬁnd a basis
+of V systematically. The way to do so is to think of V as the nullspace of the coeﬃcient matrix:
+V = N(A)
+where
+A =
+
+
+2
+−2
+−6
+−4
+5
+1
+−3
+8
+−3
+2
+7
+3
+
+
+To describe this nullspace, put the matrix A in reduced row echelon form:
+A =
+
+
+2
+−2
+−6
+−4
+5
+1
+−3
+8
+−3
+2
+7
+3
+
+
+RREF
+⇝
+R =
+
+
+1
+0
+−1
+1
+0
+1
+2
+3
+0
+0
+0
+0
+
+
+Since N(A) = N(R), the nullspace of the matrix R in reduced row echelon form can be described
+in terms of pivot variables (x and y) and free variables (z and t):
+R
+
+
+x
+y
+z
+t
+
+= 0
+i.e.
+(
+x −z + t = 0
+y + 2z + 3t = 0
+34
+Hence:
+V =
+
+
+
+
+
+
+
+
+
+z −t
+−2z −3t
+z
+t
+
+for any z, t
+
+
+
+
+
+
+
+To ﬁnd basis vectors of V , just set one of the free variables (in this case, either z or t) equal to 1
+and the other free variable equal to 0. We conclude that a basis of V is given by:
+
+
+1
+−2
+1
+0
+
+
+and
+
+
+−1
+−3
+0
+1
+
+
+Therefore, V is two-dimensional, hence a plane.
+Let us summarize the two ways of thinking about a vector subspace V ⊂Rm: either as the column
+space of a matrix A (when you are given a set of vectors which spans V ), or as the nullspace of a
+matrix A (when you are given equations satisﬁed by V ). In either case, analyzing V (i.e. ﬁnding
+a basis and computing its dimension) is systematically done by putting the matrix A in (reduced)
+row echelon form.
+Remark. If A is a square n×n matrix, the rank always satisﬁes r ≤n. We can only have equality,
+i.e. r = n, if the columns of A are linearly independent. This is equivalent to the only solution of
+Av = 0 being the zero vector v = 0, so the nullspace of A just consists of the zero vector. Moreover:
+r = n
+if and only if
+A is invertible
+(83)
+Indeed, everything we said in this Remark can be translated as saying that (for A a square matrix)
+the system Av = b has a single solution v for any vector b. This solution is precisely v = A−1b.
+35

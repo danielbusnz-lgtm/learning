@@ -1,0 +1,165 @@
+Lecture 10 (March 10)
+
+Reading: Section 3.5
+Viewing: Lecture 10
+To a m × n matrix A, we associated the following subspaces:
+the column space C(A) ⊂Rm
+the nullspace N(A) ⊂Rn
+We will now consider two more subspaces corresponding to the matrix A:
+the row space C(AT ) ⊂Rn
+the left nullspace N(AT ) ⊂Rm
+Collectively, the four subspaces above are called the four fundamental subspaces of A. The row
+space is just the subspace spanned by the rows of the matrix A (which are the same things as the
+columns of the transpose matrix AT ). Meanwhile, the left nullspace consists of m × 1 vectors such
+that:
+AT
+
+
+v1
+...
+vm
+
+= 0
+If you transpose the equation above, then you obtain (using formula (43)):
+
+v1
+. . .
+vm
+
+A = 0
+hence the left nullspace of A consists of 1 × m vectors (in other words, row vectors) v such that:
+vA = 0
+(84)
+This equation explains why we call it the “left” nullspace.
+Fact 8. If r is the rank of the matrix A (number of pivots), then the four subspaces have dimensions:
+dim C(A) = r
+dim C(AT ) = r
+dim N(A) = n −r
+dim N(AT ) = m −r
+Let’s try and justify the fact above. The fact that the column space has dimension equal to r
+is just a consequence of the fact that the pivot columns form a basis of C(A).
+The fact that
+the nullspace has dimension n −r holds because a choice of basis vectors of N(A) is given by
+setting all the free variables equal to 0 except for one of them; the number of such basis vectors
+is the same as the number of free variables, namely n minus the number of pivot variables, i.e. n−r.
+Let’s justify the fact that the row space of A also has dimension r. To see this, let us bring the
+matrix in reduced row echelon form R (row operations do not change the row space). Of the m
+rows of R, exactly r of them will be non-zero (the rows which have pivots) and m −r of them will
+be zero (the rows which do not have pivots). Therefore, the dimension of the row space is exactly r,
+since pivot rows are linearly independent. This implies that dim C(AT ) = r, which also implies that
+36
+dim N(AT ) = m−r, just by repeating the argument in the previous paragraph for A replaced by AT .
+The reason why we introduced the row space and the left nullspace is that they provide complements
+for the nullspace and column space, respectively. To understand what this means, suppose you had
+two vector subspaces:
+V, W ⊂Rn
+of dimensions k and n −k, respectively. If V and W are suﬃciently general, then their intersection
+only consists of the zero vector, in which case we call V and W complementary subspaces. This
+notion only applies when the dimensions of V and W add up to n, the dimension of ambient space.
+Example 3. Two diﬀerent lines passing through the origin are complementary subspaces of R2,
+and any plane and line which only intersect at the origin are complementary subspaces of R3.
+However, two planes passing through the origin can never be complementary subspaces in R3, be-
+cause their intersection always contains a line (moreover, the dimensions add up to 2+2 = 4 ̸= 3).
+Here is a fact we will understand more closely in upcoming weeks:
+The row space and nullspace of A are complementary subspaces of Rn
+The column space and left nullspace of A are complementary subspaces of Rm
+for any m × n matrix A. But practically, how do we compute the four fundamental subspaces of a
+matrix? For example, how do we ﬁnd a basis of each of them? For the column space and nullspace
+of A, we saw that the key role was played by its reduced row echelon form R:
+• the column space C(A) is spanned by the pivot columns of A (i.e. those columns where the
+reduced row echelon form R has its pivots)
+• the nullspace N(A) is spanned by the vectors v =
+
+
+x1
+...
+xn
+
+where all the free variables except
+for one take the value 0, and the pivot variables take values prescribed by Rv = 0
+So how do we compute the spaces C(AT ) and N(AT )? The direct way is to just put AT in reduced
+row echelon form, and apply the previous two bullets. But quite often, the problem naturally deals
+with the reduced row echelon form of the matrix A itself:
+A RREF
+⇝
+R
+(85)
+By analogy with (62), we have:
+C(AT ) = C(RT )
+(86)
+which happens because row operations do not change the row space of a matrix. Therefore:
+37
+a basis for C(AT ) is given by the pivot rows of the matrix R
+What about the left nullspace N(AT ) in terms of the reduced row echelon form (85)? As we have
+seen a few lectures ago, Gauss-Jordan elimination involves multiplying the matrix A on the left:
+KA = R
+by an invertible matrix K. By (84), a row vector v lies in N(AT ) precisely means:
+0 = vA = vK−1
+| {z }
+call this w
+R
+(87)
+where v is an 1 × m vector. The reduced row echelon matrix R will have the form, say:
+
+
+1
+∗
+∗
+0
+∗
+∗
+0
+0
+0
+0
+1
+∗
+∗
+0
+0
+0
+0
+0
+0
+0
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+
+and 0 = wR happens if and only if:
+w =
+
+0
+0
+0
+∗
+∗
+
+(namely the only non-zero entries of w are those corresponding to the zero rows of R). So the
+vectors v that can satisfy (87) are those of the form:
+v = wK =
+
+0
+0
+0
+∗
+∗
+
+K
+We conclude that:
+a basis for N(AT ) is given by the rows of the square matrix K which
+correspond to the zero rows of the reduced row echelon form matrix R
+38

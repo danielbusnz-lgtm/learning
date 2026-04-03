@@ -1,0 +1,197 @@
+Lecture 11 (March 12)
+
+Reading: Section 4.1
+Viewing: Lecture 14
+Today we will start discussing orthogonality (i.e.perpendicularity). First of all, we know that
+two vectors v, w ∈Rn are orthogonal precisely when their dot product is 0:
+v ⊥w
+⇔
+v · w = vT w = 0
+(88)
+If two vectors v and w are orthogonal, then we have the Pythagorean theorem:
+||v + w||2 = ||v||2 + ||w||2
+where we recall formula (7) for the length ||v|| of a vector (proof of the Pythagorean theorem:
+||v + w||2 = (v + w) · (v + w) = v · v + v · w + w · v + w · w = ||v||2 + ||w||2).
+But now that we have the necessary language to talk about more than just individual vectors in
+Rn, we can generalize the concept of orthogonality to entire subspaces:
+Deﬁnition 11. Two subspaces V, W ⊂Rn are called orthogonal, which will be denoted by V ⊥W,
+if we have v ⊥w for any two vectors v ∈V and w ∈W.
+Note that two subspaces can be orthogonal only if dim V + dim W ≤n. Otherwise, the two sub-
+spaces would intersect in a non-zero vector v ∈V ∩W (think about two planes passing through
+the origin in R3: they always contain a whole line) and it would be impossible for v ⊥v.
+Let us now consider an m × n matrix A, with the four fundamental subspaces considered in the
+previous Lecture. We have the following facts:
+C(A) ⊥N(AT )
+(89)
+N(A) ⊥C(AT )
+(90)
+Let’s prove these formulas: for (89), we need to take an arbitrary vector a ∈C(A) and an arbitrary
+vector v ∈N(AT ) and show that they are perpendicular. By the very deﬁnition of the column
+space and the left nullspace, we have:
+a = Aw for some vector w
+and
+AT v = 0 ⇔vT A = 0
+Then we have:
+v · a = vT a = vT Aw = 0w = 0
+⇒
+a ⊥v
+Similarly, let’s prove (90): we need to take an arbitrary w ∈N(A) and an arbitrary b ∈C(AT )
+and show that they are perpendicular. By the very deﬁnition of nullspace and row space, we have:
+Aw = 0
+and
+b = AT v for some vector v
+Then we have:
+bT = vT A
+⇒
+bT w = vT Aw = vT 0 = 0
+⇒
+b ⊥w
+39
+(alternatively, you can think of statement (90) as simply restating (89) for AT instead of A). More-
+over, we saw in Fact 8 that the spaces in (89) are of complementary dimension, and thus they have
+the maximal total dimension that orthogonal subspaces can have. Ditto for (90). This is a special
+case of the following notion:
+Deﬁnition 12. Given a subspace V ⊂Rn, its orthogonal complement is the subspace V ⊥
+consisting of all vectors in Rn perpendicular to V . In other words:
+V ⊥=
+n
+w ∈Rn such that v ⊥w for all v ∈V
+o
+(91)
+Note that (91) is just a set. To show that it is a subspace, you would need to prove that:
+v ⊥w1 and v ⊥w2 for all v ∈V
+⇒
+v ⊥(α1w1 + α2w2) for all v ∈V
+for any scalars α1, α2. The implication above can be easily proved by resorting to the dot product
+interpretation of perpendicularity. So combining Fact 8 with (89), (90) precisely says that:
+the left nullspace is the orthogonal complement of the column space
+the row space is the orthogonal complement of the nullspace
+This is sometimes called the Fundamental Theorem of Linear Algebra . Let’s see an example:
+A =
+ 1
+0
+3
+−1
+0
+1
+−2
+1
+
+(I chose a matrix which is already in reduced row echelon form to save us the work of Gauss-Jordan
+elimination, which is a routine computation for us by now). Then the row space of A is:
+C(AT ) = spanned by
+
+
+1
+0
+3
+−1
+
+and
+
+
+0
+1
+−2
+1
+
+
+(92)
+(we write the rows vertically to keep with our convention that vectors should be written as columns).
+To compute a basis for the nullspace of A, you must ﬁrst note that the pivot columns of the matrix
+are 1 and 2, while the free columns are 3 and 4. Basis vectors for the nullspace are given by setting
+all the free variables equal to 0, except for one which is set equal to 1:
+N(A) = spanned by
+
+
+a
+b
+1
+0
+
+and
+
+
+c
+d
+0
+1
+
+
+To solve for a, b, c, d, you must use the property that the vectors above are annihilated by A:
+A
+
+
+a
+b
+1
+0
+
+= A
+
+
+c
+d
+0
+1
+
+= 0
+⇒
+
+
+
+
+
+
+
+
+
+
+
+a + 3 = 0
+b −2 = 0
+c −1 = 0
+d + 1 = 0
+40
+so we conclude that:
+N(A) = spanned by
+
+
+−3
+2
+1
+0
+
+and
+
+
+1
+−1
+0
+1
+
+
+(93)
+It is easy to see that the two basis vectors in (92) are orthogonal to each of the two basis vectors
+in (93), thus establishing the fact that the row space and nullspace are orthogonal subspaces.
+The fundamental theorem of linear algebra says that the four fundamental subspaces of a matrix
+are pairwise orthogonal complements. Here’s why we like this setup: if you have two complemetary
+subspaces V, W ⊂Rn (as deﬁned in Lecture 10) then any vector a ∈Rn can be written as:
+a = v + w
+where v ∈V and w ∈W
+(94)
+Moreover, v and w with this property are unique, and they are called the components of the
+vector a in the complementary subspaces V and W, respectively. So for example, letting V and W
+be the nullspace and row space of an m × n matrix, then we conclude that any vector in Rn can
+be written uniquely as a linear combination of the rows of A plus a vector annihilated by A.
+In the special case when V, W are complementary orthogonal subspaces of Rn, i.e.:
+V = W ⊥
+or, equivalently
+W = V ⊥
+the decomposition (94) takes on a more geometric meaning. In this case, v and w are none other
+than the projections of the general vector a onto the subspaces V and W:
+v = projV a
+and
+w = projW a
+We conclude that any vector is the sum of its projections onto complementary orthogonal subspaces.
+41

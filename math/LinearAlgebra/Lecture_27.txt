@@ -1,0 +1,600 @@
+Lecture 27 (April 26)
+
+Reading: Section 7.1–7.2
+Viewing: Lecture 29
+We will now study the Singular Value Decomposition (SVD) of a matrix, which is very
+useful in computations. Think of image processing: in general, this deals with a large rectangular
+table of pixels, and the color of every pixel is an integer. So the image is encoded by an m × n
+matrix A of integers, where m and n are two very large numbers which keep track of how many
+pixels we have vertically and horizontally. If the colors of all the pixels are random, then there’s
+not much you can do to simplify the matrix A. But in real life, nearby pixels tend to have similar
+colors, and patterns emerge that allow you to conclude that the matrix A has a special form. An
+extreme example is where your image consists only of three colors separated by vertical lines, such
+as a ﬂag:
+A =
+
+
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+
+
+Remembering the whole matrix is both memory and computational power-consuming, so you’d be
+more eﬃcient by remembering instead the fact that A can be presented as the product:
+A =
+
+
+1
+1
+1
+1
+1
+1
+1
+1
+
+
+·
+
+1
+1
+2
+2
+2
+2
+2
+3
+3
+3
+
+of a column vector and a row vector. In general, the goal of SVD is to write any rectangular matrix
+as a sum of such products (let r be the rank of A):
+A = u1σ1vT
+1 + · · · + urσrvT
+r
+(241)
+where each ui is a column vector, each vT
+i is a row vector, and:
+the positive numbers σ1, . . . , σr > 0 are called singular values
+Let us now explain how to obtain the decomposition (241).
+Fact 22. The m × m matrix AAT and the n × n matrix AT A are both symmetric and positive
+semideﬁnite. These two matrices have the same set of positive eigenvalues; call them σ2
+1, . . . , σ2
+r.
+97
+Proof: assume that λ ̸= 0 is an eigenvalue of AAT . Then:
+AAT v = λv
+⇒
+AT A(AT v) = λ(AT v)
+which implies that λ is also an eigenvalue of AT A corresponding to the eigenvector AT v (the reason
+you need λ ̸= 0 is in order to infer that AT v ̸= 0, since eigenvectors must be non-zero by deﬁnition).
+Since symmetric matrices (such as AAT and AT A) have orthonormal eigenvectors, we can choose:
+left singular vectors u1, . . . , ur, . . . , um ∈Rm
+right singular vectors v1, . . . , vr, . . . , vn ∈Rn
+such that the ui’s are orthonormal and the vi’s are orthonormal, and:
+AAT ui = σ2
+i ui
+and
+AT Avi = σ2
+i vi
+(242)
+(the formulas above even hold for i > r, if we let σr+1, σr+2, · · · = 0). But we actually want the left
+and right singular vectors to also be connected, via the following formulas:
+Avi = σiui
+and
+AT ui = σivi
+(243)
+which also hold for all i, even i > r. The numbers σ1, . . . , σr are called singular values. It is easy
+to see that (243) implies both (242) and (241): the former implication is an easy exercise, while the
+latter follows by multiplying both sides of (241) with any given vector vi and using that vT
+j vi = 0
+if j ̸= i. Note that the singular value decomposition (241) can be written in compact form as:
+A = UΣV T
+(244)
+where:
+U =
+
+u1
+. . .
+um
+
+Σ =
+
+
+σ1
+0
+0
+0
+. . .
+0
+...
+0
+0
+. . .
+0
+0
+σr
+0
+. . .
+0
+0
+0
+0
+. . .
+...
+...
+...
+...
+...
+
+
+V =
+
+v1
+. . .
+vn
+
+Remark. From (243), it follows that u1, . . . , ur form a basis of the column space of A, and
+v1, . . . , vr form a basis of the row space.
+The orthogonality of the four subspaces implies that
+ur+1, . . . , um form a basis of the left nullspace of A, while vr+1, . . . , vn form a basis of the nullspace.
+Since V is an orthogonal matrix, we have V T = V −1, so (244) implies:
+AV = UΣ
+(245)
+which is just another way to write the ﬁrst identity in (243). As for the second identity in (243),
+we can obtain it as follows. First transpose relation (244):
+AT = V ΣT UT
+(246)
+98
+Since U is an orthogonal matrix, we have UT = U−1, hence:
+AT U = V ΣT
+(247)
+Therefore, the SVD of the transpose of A is obtained by transposing the SVD of A.
+Let’s do an example of SVD, which will also show us that the procedure works, for the matrix:
+A =
+
+
+3
+2
+2
+3
+2
+−2
+
+
+We ﬁrst need to compute the singular values, which will be the square roots of the eigenvalues of:
+AT A =
+3
+2
+2
+2
+3
+−2
+ 
+
+3
+2
+2
+3
+2
+−2
+
+=
+17
+8
+8
+17
+
+The characteristic polynomial of this matrix is:
+p(λ) = det
+17 −λ
+8
+8
+17 −λ
+
+= (17 −λ)2 −82
+and its roots will be precisely those numbers for which 17 −λ = ±8, so:
+17 −σ2
+1 = −8
+⇒
+σ2
+1 = 25
+⇒
+σ1 = 5
+17 −σ2
+2 = 8
+⇒
+σ2
+2 = 9
+⇒
+σ2 = 3
+(it is customary to order your singular values σ1, . . . , σr from the greatest to the smallest). Next,
+you need to ﬁnd the right singular vectors, which will be eigenvectors of the matrix AT A:
+v1 ∈N
+17 −σ2
+1
+8
+8
+17 −σ2
+1
+
+= N
+−8
+8
+8
+−8
+
+⇒
+v1 =
+1
+√
+2
+1
+1
+
+v2 ∈N
+17 −σ2
+2
+8
+8
+17 −σ2
+2
+
+= N
+8
+8
+8
+8
+
+⇒
+v2 =
+1
+√
+2
+ 1
+−1
+
+Note that v1 and v2 are orthonormal (indeed, recall that eigenvectors of symmetric matrices corre-
+sponding to diﬀerent eigenvalues are always orthogonal, and we have intentionally scaled them so
+as to have length 1). Now let’s compute the left singular vectors. Formula (243) forces us to take:
+u1 = 1
+5Av1 = 1
+5
+
+
+3
+2
+2
+3
+2
+−2
+
+1
+√
+2
+1
+1
+
+=
+1
+√
+2
+
+
+1
+1
+0
+
+
+u2 = 1
+3Av2 = 1
+3
+
+
+3
+2
+2
+3
+2
+−2
+
+1
+√
+2
+ 1
+−1
+
+=
+1
+3
+√
+2
+
+
+1
+−1
+4
+
+
+The vectors u1 and u2 are also orthonormal (this follows from the fact that v1 and v2 are) but we
+need to complete them to an orthonormal basis of R3. This is achieved by Gram-Schmidt. Start
+with any vector that is not a linear combination of u1 and u2, say:
+a3 =
+
+
+0
+0
+1
+
+
+99
+and construct the vector:
+w3 = a3 −proju1a3 −proju2a3 =
+
+
+0
+0
+1
+
+−1
+√
+2
+
+
+1
+1
+0
+
+· 0 −
+1
+3
+√
+2
+
+
+1
+−1
+4
+
+·
+4
+3
+√
+2 = 1
+9
+
+
+−2
+2
+1
+
+
+The vector w3 thus constructed is orthogonal to both u1 and u2, so we need to renormalize it:
+u3 =
+w3
+||w3|| = 1
+3
+
+
+−2
+2
+1
+
+
+With this in mind, we conclude the following SVD for the matrix A:
+A =
+
+
+1
+√
+2
+1
+3
+√
+2
+−2
+3
+1
+√
+2
+−
+1
+3
+√
+2
+2
+3
+0
+4
+3
+√
+2
+1
+3
+
+
+
+
+5
+0
+0
+3
+0
+0
+
+
+" 1
+√
+2
+1
+√
+2
+1
+√
+2
+−1
+√
+2
+#
+So in general, what can we say about a rank 1 matrix? The answer is that it will be of the form:
+A = uσvT
+(248)
+where u and v are length 1 vectors, and σ is a non-zero number. In other words, any column of a
+rank 1 matrix is a multiple of u and any row is a multiple of v. Obviously, you can rescale u and
+v such that they have length 1 (at the cost of changing the number σ) and you can ﬂip the sign on
+σ (at the cost of replacing v by −v) so as to ensure σ > 0. With this in mind, the singular value
+decomposition (241) can be thought of as:
+SVD writes any matrix as a sum of rank 1 matrices
+(249)
+where the columns (respectively rows) of the rank 1 matrices involved are orthonormal. This is
+good to keep in mind, since it can save you a lot of time when doing SVD on a matrix where it’s
+intuitively pretty obvious how to break it up as a sum of rank 1 matrices. For example:
+A =
+ 0
+5
+0
+−3
+0
+0
+
+If you started doing the usual algorithm (compute the eigenvalues and eigenvectors of the 3 × 3
+matrix AT A) you might ﬁnd yourself doing a lot of work. You can save a lot of time by observing
+that A decomposes as:
+A =
+0
+5
+0
+0
+0
+0
+
++
+ 0
+0
+0
+−3
+0
+0
+
+Each of the two matrices above has rank 1, because all of their columns are multiples of a single
+vector. Even more explicitly, we have:
+A =
+1
+0
+
+|{z}
+u1
+·
+5
+|{z}
+σ1
+·
+
+0
+1
+0
+
+|
+{z
+}
+v1
++
+ 0
+−1
+
+| {z }
+u2
+·
+3
+|{z}
+σ2
+·
+
+1
+0
+0
+
+|
+{z
+}
+v2
+However, when using this shortcut, you need to make sure that the vectors u1, u2, . . . you construct
+are orthonormal (and also that the vectors v1, v2, . . . are orthonormal).
+100

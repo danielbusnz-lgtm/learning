@@ -1,0 +1,288 @@
+Lecture 21 (April 9)
+
+Reading: Section 5.3
+Viewing: Lecture 20
+Remember systems of linear equations like Av = b? We learned how to solve these through
+Gaussian elimination, but when A is a square n × n matrix, there is another way called Cramer’s
+rule. In this setup, you have as many equations as unknowns, and if A is invertible then:
+Av = b
+has the unique solution
+v = A−1b
+(172)
+So the task has become to compute the inverse matrix A−1. But if you look back at formula (169),
+the inverse matrix is almost staring back at you! Explicitly, consider the matrix:
+X
+whose entries are
+xij = Cji
+and Cij are the cofactors (170) (note the indices above!). Then formula (169) precisely says that:
+det A = ai1x1i + · · · + ainxni
+for all i ∈{1, . . . , n}. Together with the fact that for all i ̸= j:
+0 = ai1x1j + · · · + ainxnj
+(proof: the right-hand side of the formula above is precisely the right-hand side of (169) for the
+matrix A′ obtained from A by copying the i–row into of the j–th row; since A′ has two equal rows,
+we have det A′ = 0) we conclude that:
+
+
+det A
+0
+. . .
+0
+0
+det A
+. . .
+0
+...
+...
+...
+...
+0
+0
+. . .
+det A
+
+= AX
+and therefore:
+A−1 =
+X
+det A
+(173)
+In other words, the (i, j) entry of A−1 is given by:
+A−1
+ij =
+Cji
+det A
+(174)
+Note that you need to put the (j, i) cofactor in the formula above, not the (i, j) cofactor!
+So now let’s write a formula for the solution of the equation:
+A
+
+
+v1
+...
+vn
+
+=
+
+
+b1
+...
+bn
+
+
+(175)
+By (172), we must have:
+vi = A−1
+i1 · b1 + · · · + A−1
+in · bn
+75
+By formula (174), we therefore have:
+vi = C1i · b1 + · · · + Cni · bn
+det A
+If you stare the right-hand side of the formula above, you will notice that it’s precisely the column
+cofactor expansion (171) of the matrix:
+Bi obtained by replacing the i–th column of A by b
+(176)
+Therefore, we get Cramer’s rule, which says that the solution to the system (175) has:
+v1 = det B1
+det A , . . . , vn = det Bn
+det A
+(177)
+This formula is particularly good when solving small systems of equations, like 3 × 3 ones:
+
+
+1
+−2
+0
+1
+0
+−3
+2
+0
+−5
+
+
+
+
+v1
+v2
+v3
+
+=
+
+
+0
+4
+1
+
+
+By (177), the solution is:
+v1 =
+det
+
+
+0
+−2
+0
+4
+0
+−3
+1
+0
+−5
+
+
+det
+
+
+1
+−2
+0
+1
+0
+−3
+2
+0
+−5
+
+
+v2 =
+det
+
+
+1
+0
+0
+1
+4
+−3
+2
+1
+−5
+
+
+det
+
+
+1
+−2
+0
+1
+0
+−3
+2
+0
+−5
+
+
+v3 =
+det
+
+
+1
+−2
+0
+1
+0
+4
+2
+0
+1
+
+
+det
+
+
+1
+−2
+0
+1
+0
+−3
+2
+0
+−5
+
+
+The 3×3 determinants above can be computed either by cofactor expansion (169), (171) (preferably
+along a row or column with many zeroes) or even by applying the brute force formula (166). In
+any case, we obtain:
+v1 = −17
+v2 = −17
+2
+v3 = −7
+As a ﬁnal applcation of determinants, let us discuss about cross products. Remember when I said
+that it does not make sense to multiply vectors and get a vector, bar a rather particular exception
+for three dimensional vectors? Well, here is that exception. If you have vectors:
+v =
+
+
+v1
+v2
+v3
+
+
+and
+w =
+
+
+w1
+w2
+w3
+
+
+in three-dimensional space, their cross product is deﬁned as the following vector in three dimen-
+sional space:
+v × w = det
+
+
+i
+v1
+w1
+j
+v2
+w2
+k
+v3
+w3
+
+
+(178)
+where i = e1, j = e2, k = e3 are the standard unit vectors on the axes of three-dimensional space.
+You can compute the determinant in (178) by cofactor expansion on the ﬁrst column, and obtain:
+v × w = i · (v2w3 −v3w2) + j · (v3w1 −v1w3) + k · (v1w2 −v2w1) =
+
+
+v2w3 −v3w2
+v3w1 −v1w3
+v1w2 −v2w1
+
+
+(179)
+76
+The determinant deﬁnition of the cross product has a few advantages: it is easy to memorize,
+and it manifestly explains why the cross product is 0 if the vectors v and w are on the same line
+(becuse then columns 2 and 3 of the determinant (178) would be multiples of each other). Moreover,
+because switching two columns ﬂips the sign of the determinant, we conclude that:
+v × w = −(w × v)
+Moreover, if we have a third vector u, then we could dot it with the cross product v × w and get
+a number. This number is actually quite nice, namely:
+u · (v × w) = det
+
+
+u1
+v1
+w1
+u2
+v2
+w2
+u3
+v3
+w3
+
+
+(180)
+Geometrically, the determinant in the right-hand side of (180) is the volume of the parallelogram
+whose edges are given by the vectors u, v, w. If u lies in the plane spanned by v and w, then the
+volume of this parallelogram is 0. This is manifestly apparent from (180), since a matrix where one
+of the columns is a linear combination of the others has determinant 0.
+77

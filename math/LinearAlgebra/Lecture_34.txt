@@ -1,0 +1,221 @@
+Lecture 34 (May 17)
+
+Reading: Section 10.5
+Viewing: none
+We will now study Fourier series, which is a very useful application of linear algebra in analysis,
+and from there in applied mathematics and engineering. But here’s the twist: Fourier analysis is
+not concerned with ﬁnite-dimensional vector spaces, but with inﬁnite-dimensional ones.
+Deﬁnition 30. Let V be the vector space of diﬀerentiable functions f : R →R with period 2π, i.e.:
+f(x + 2π) = f(x)
+∀x ∈R
+(321)
+Such functions are called periodic.
+The fact that we only look at periodic functions might seem like a restriction, but it’s suitable for
+many applications (think signals, waves). Also, the fact that the period is 2π rather than any other
+number is not a meaningful restriction, but more of a notational convention. The reason for this is
+that if f(x) is a function with period L, then f(2πx
+L ) is a function with period 2π.
+The fact that the set of f’s as in (321) is a vector space is easy to see, basically because any linear
+combination of diﬀerentiable periodic functions is diﬀerentiable and periodic (this entails the fact
+that all of these functions have the same period, but we have already assumed that this is the case).
+To convince you that it is not a ﬁnite-dimensional vector space, consider the functions:
+1, cos x, cos 2x, cos 3x, . . . , sin x, sin 2x, sin 3x, . . .
+(322)
+We claim that all of the inﬁnitely many functions in (322) are linearly independent: there is no
+linear combination of these functions which is equal to the zero function 5. Therefore, the space
+V is an entirely new beast from the vector spaces Rn that we have studied in most of our course.
+However, it does share a lot of features with ﬁnite-dimensional vector spaces, such as the existence
+of a dot product like operation, namely the inner product of functions:
+(f, g) =
+Z π
+−π
+f(x)g(x)dx
+(323)
+6 In other words, the inner product takes two functions and produces a number, just like the dot
+product took two vectors and produced a number. And just like the length of a vector is its dot
+product with itself, we have the norm of a function:
+||f||2 = (f, f) =
+Z π
+−π
+f(x)2dx
+(324)
+which is a positive real number (unless f = 0, in which case the norm is 0). Here’s one important
+fact: the functions (322) are all mutually orthogonal with respect to the inner product (323):
+(sin kx, sin lx) = 0,
+unless k = l, in which case (sin kx, sin kx) = π
+(325)
+(cos kx, cos lx) = 0,
+unless k = l, in which case (cos kx, cos kx) = π
+(326)
+(sin kx, cos lx) = 0,
+for all k, l
+(327)
+5Note the emphasis on the word “linear”, since there are non-linear combinations of the above functions which
+are equal to the zero function, for example (sin x)2 + (cos x)2 −1 = 0. However, when studying vector spaces, all we
+are concerned with are linear combinations
+6The fact that the integral goes from −π to π is not important. You could have taken it over any interval of length
+2π and the value of the integral would have been unchanged, due to the periodicity of the functions f and g
+123
+The formulas above also hold if k or l are 0 (except that sin 0 = 0 and cos 0 = 1 imply that (0, 0) = 0
+and (1, 1) = 2π). So (322) is a collection of linearly independent, mutually orthogonal elements of
+the vector space V . If this were a ﬁnite-dimensional vector space, we could hope that the collection
+(322) is also a basis. Well, something pretty close to this actually happens:
+Fact 23. Any function f ∈V can be written as a linear combination of the functions (322), but
+the linear combination has to be inﬁnite. In other words, we can write any function f ∈V as:
+f(x) = a0 + a1 cos x + a2 cos 2x + · · · + b1 sin x + b2 sin 2x + . . .
+(328)
+The numbers a0, a1, a2, . . . , b1, b2, . . . are called the Fourier coeﬃcients of f(x), and the sum
+(328) is called the Fourier series of f(x). It is a theorem that the Fourier series converges.
+In signal processing (and music) the functions cos kx, sin kx are called harmonics, so the Fourier
+series is basically just a way to decompose an arbitrary periodic signal f(x) into harmonics. As
+you would expect, in real-life examples the coeﬃcients an, bn tend to 0 as n →∞, so only the ﬁrst
+few harmonics of a signal dominate it.
+Linear algebra also gives us a very practical way to compute the Fourier coeﬃcients of any function.
+Because the functions (322) are orthogonal, you can compute these coeﬃcients by computing the
+inner product of f with any one of these functions:
+(f, 1) = a0(1, 1)
+⇒
+a0 = 1
+2π
+Z π
+−π
+f(x)dx
+(329)
+(f, cos kx) = ak(cos kx, cos kx)
+⇒
+ak = 1
+π
+Z π
+−π
+f(x)(cos kx)dx
+(330)
+(f, sin kx) = bk(sin kx, sin kx)
+⇒
+bk = 1
+π
+Z π
+−π
+f(x)(sin kx)dx
+(331)
+Formulas (329), (330), (331) show that if you have a machine that computes various integrals of
+f (and there are many ways for getting approximate answers) this immediately gives a recipe for
+computing the Fourier series of f. Here’s an example of this setup. Consider the function:
+f(x) = x
+for all x ∈[−π, π]
+(332)
+then extended to all real numbers x so that it has period 2π (note that this function has a disconti-
+nuity at x = π; all the facts in this class still hold in this slightly more general setup). To compute
+its Fourier series, we need to compute the following integrals:
+(f, cos kx) =
+Z π
+−π
+x(cos kx)dx = 0
+(f, sin kx) =
+Z π
+−π
+x(sin kx)dx = (−1)k−1 2π
+k
+which can be done e.g. by integration by parts. Therefore (329)–(331) imply the Fourier series:
+f(x) = 2 sin x
+1
+−2 sin 2x
+2
++ 2 sin 3x
+3
+−2 sin 4x
+4
++ . . .
+(333)
+124
+The fact that the Fourier series only contains sines in this example should not be surprising; after
+all, the particular function f(x) in (332) is odd. But then let us compute the norm squared of the
+function (332). On one hand, we have:
+(f, f) =
+Z π
+−π
+x2dx = 2π3
+3
+On the other hand, the norm squared of the right-hand side of (333) is easy to compute, because
+the functions sin kx have norm π and pairwise zero inner product:
+(f, f) = 4π
+12 + 4π
+22 + 4π
+32 + 4π
+42 + . . .
+By equating the two expressions above, we arrive at the interesting identity:
+π2
+6 = 1 + 1
+22 + 1
+32 + 1
+42 + . . .
+This (and others like it) is a neat identity involving π, which gives an easy way to approximate
+the powers of π. Based on the formula above, you could even approximate π using pen and paper
+(assuming you remember the algorithm for taking square roots by hand).
+Let’s now discuss a variant of Fourier series, wherein we replace the vector space V from Deﬁnition
+30 by the vector space of diﬀerentiable functions with complex (instead of real) values:
+f : R →C
+with period 2π. Because complex numbers are of the form a + bi where a, b are real numbers, such
+complex-valued functions are of the form a(x) + b(x)i where a(x), b(x) are real-valued functions.
+Much of the theory concerning Fourier series carries through in the present setup, but in a sense
+it’s simpler and more elegant. This is because instead of working with the particular real-valued
+functions (322), you can work with the complex-valued functions:
+eikx
+for all integers k
+(334)
+In fact, the functions in (322) are merely the real/imaginary parts of the functions in (334). In the
+complex-valued setting, the deﬁnition of inner product and norm from (323) should be changed to:
+(f, g) =
+Z π
+−π
+f(x)g(x)dx
+(335)
+where z denotes the complex conjugate of the complex number z. The reason for this is that you
+want the norm of any function to be a non-negative real number:
+||f||2 =
+Z π
+−π
+|f(x)|2dx ≥0
+(336)
+and you would not have been able to achieve this without the conjugate in (335) (what I’m saying
+is that if z is an arbitrary complex number, z2 is also a complex number, but zz = |z|2 is a
+non-negative real number). It is then easy to compute the inner products of the functions (334):
+(eikx, eilx) =
+Z π
+−π
+eikxeilxdx =
+Z π
+−π
+ei(k−l)xdx =
+
+
+
+ei(k−l)x
+i(k−l)
+
+π
+−π = 0
+if k ̸= l
+2π
+if k = l
+125
+So the functions (334) are pairwise orthogonal. The complex-valued analogue of Fact 23 is that
+any diﬀerentiable complex-valued periodic function has a Fourier series of the form:
+f(x) =
+X
+k∈Z
+ckeikx
+(337)
+where the Fourier coeﬃcients are given by:
+ck = 1
+2π
+Z π
+−π
+f(x)e−ikxdx
+(338)
+The advantage of complex-valued Fourier series over real-valued ones is clear: the Fourier series
+(337) is a sum of only one type of function, as opposed from two types of functions in (328).
+Moreover, you only need to remember the single formula (338) for the Fourier coeﬃcients in the
+complex-valued case, instead of formulas (329), (330) and (331) in the real-valued case. Finally,
+since any real-valued function can also be thought of as a complex valued function, it still has a
+Fourier series of the form (337) (it’s just that you will have ck = c−k, in order for the imaginary
+parts of various complex exponentials to cancel each other out).

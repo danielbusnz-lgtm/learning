@@ -1,0 +1,131 @@
+Lecture 29 (May 3)
+
+Reading: Section 12.1
+Viewing: none
+We will now start discussing major applications of linear algebra: probability and statistics.
+First of these is probability, which studies the likelihood of future events. Suppose we’re in a
+situation with n possible outcomes x1, . . . , xn (think of these as real numbers), which arise with
+probabilities p1, . . . , pn, respectively. Then:
+p1, . . . , pn > 0
+and
+p1 + · · · + pn = 1
+(266)
+Deﬁnition 24. The mean is the sum of the possible outcomes, weighted by their probabilities:
+µ = p1x1 + · · · + pnxn
+(267)
+and the variance is:
+Σ = p1(x1 −µ)2 + · · · + pn(xn −µ)2
+(268)
+The square root of the variance, namely σ =
+√
+Σ, is called the standard deviation.
+The mean is sometimes called the expected value, which is the plain English signiﬁcance of this
+notion. The variance is a positive quantity which measures how far away from the mean our out-
+comes are. Clearly, the variance is 0 only if there exists a single outcome with probability 1.
+The situation described above is when there are ﬁnitely many (or discrete) outcomes. But we could
+also study a quantity which takes inﬁnitely many (or continuous) values, for example temperature.
+In this case, the probability is encoded not in a ﬁnite set of numbers, but in a function:
+p(x) : R −→R≥0
+called probability distribution. In this context, you shouldn’t measure the probability of your
+quantity being exactly equal to x (for example, it makes little sense to measure the probability
+that temperature will be exactly 62.746 degrees) but you measure instead the probability that the
+quantity lies in a certain interval [a, b] (for example, you measure the probability that temperature
+falls between 62 and 63 degrees):
+Prob(x ∈[a, b]) =
+Z b
+a
+p(x)dx
+(269)
+The reason for the integral is that it is the continuous analogue of a sum: if you subdivide the
+interval [a, b] into many (say N very large) small intervals, then the integral in (269) is inﬁnitesimally
+close to the sum of the probabilities that x lies in the N small intervals. In this continuous context,
+condition (266) is replaced by:
+Z ∞
+−∞
+p(x)dx = 1
+(270)
+while the mean (267) and the variance (268) must be deﬁned by integrals:
+µ =
+Z ∞
+−∞
+p(x)xdx
+(271)
+105
+Σ =
+Z ∞
+−∞
+p(x)(x −µ)2dx
+(272)
+The most basic example of probability distribution is the uniform one, where the variable can lie
+in an interval (say [0, c]) with constant probability:
+p(x) =
+(
+1
+c
+if x ∈[0; c]
+0
+otherwise
+However, this probability distribution does not really show up in nature. Real-life probabilities
+do not like the sharp cut-oﬀs that the function above experiences at the endpoints of the interval
+[0, c]. Perhaps even more importantly, real-life probability distributions tend to be higher around
+the mean and lower away from the mean. The standard example of such a behavior is the normal
+(or Gaussian) distribution:
+p(x) = e−x2
+2
+√
+2π
+(273)
+whose graph (sometimes called a “bell curve”) is plotted below. As always, the probability that
+the variable x lies in a given interval [a, b] is equal to the integral of p(x) (or the area under the
+graph) from x = a to x = b.
+-4
+-2
+2
+4
+0.1
+0.2
+0.3
+0.4
+The reason for dividing by the factor
+√
+2π is because you want the total probability to be equal to
+1, i.e. (270). The mean and variance of the normal distribution (273) are given by:
+µ =
+1
+√
+2π
+Z ∞
+−∞
+xe−x2
+2 dx = 0
+Σ =
+1
+√
+2π
+Z ∞
+−∞
+x2e−x2
+2 dx = 1
+More generally, the normal probability distribution with arbitrary mean µ ∈R and arbitrary
+variance Σ > 0 is given by the function:
+p(x) = e−(x−µ)2
+2Σ
+√
+2πΣ
+(274)
+106
+Normal distributions are extremely important, because of the central limit theorem: if you
+perform an experiment N →∞times, the mean of your samples tends to look as if it came from a
+normal distribution. For example, if you ﬂip a coin N times, the probability of getting k heads is
+close to the probability that x ∈[k, k + 1] for the normal distribution (274) with mean µ = N
+2 and
+variance Σ = N
+4 . In the error analysis of the probability distribution (274), the probability that:
+x is at most σ away from the mean is ∼68%
+x is at most 2σ away from the mean is ∼95%
+x is at most 3σ away from the mean is ∼99.7%
+x is at most 4σ away from the mean is ∼99.99%
+x is at most 5σ away from the mean is ∼99.9999%
+You can actually see this in the graph of the bell curve above: about 99.7% of the area under the
+graph of the bell curve is between x = −3 and x = 3 etc.
+107
