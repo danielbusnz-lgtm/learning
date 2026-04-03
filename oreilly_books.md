@@ -73,3 +73,73 @@
 3. Fluent Python - Luciano Ramalho
 4. Clean Code - Robert C. Martin
 5. Head First Design Patterns - Freeman & Robson
+
+---
+
+# Non-Coding Books
+
+## Product & Business
+
+| Book | Author | Focus |
+|------|--------|-------|
+| Escaping the Build Trap | Melissa Perri | Product management |
+| Product Leadership | Banfield, Eriksson, Walkingshaw | PM interviews & insights |
+| Product Management in Practice | Matt LeMay | Actionable PM guidance |
+| Inspired | Marty Cagan | How to build products people love |
+| The Lean Startup | Eric Ries | Startup methodology |
+| Running Lean | Ash Maurya | Iterate from Plan A |
+
+## UX & Design
+
+| Book | Author | Focus |
+|------|--------|-------|
+| UX Strategy | Jaime Levy | UX + business strategy |
+| Don't Make Me Think | Steve Krug | Web usability classic |
+| Articulating Design Decisions | Tom Greever | Communicate design |
+| Information Architecture | Rosenfeld & Morville | IA fundamentals |
+| Designing for Behavior Change | Stephen Wendel | Behavioral design |
+| Calm Technology | Amber Case | Design that respects attention |
+
+## Maker / Hardware / DIY
+
+| Book | Author | Focus |
+|------|--------|-------|
+| Make: Electronics | Charles Platt | Learn electronics hands-on |
+| The Makerspace Workbench | Adam Kemp | Setting up a maker lab |
+| Zero to Maker | David Lang | Getting into making |
+| Building Open Source Hardware | Alicia Gibb | DIY manufacturing |
+| Make: Arduino Bots and Gadgets | Karvinen & Karvinen | Arduino projects |
+| Raspberry Pi Cookbook | Simon Monk | Pi projects |
+
+## Career & Soft Skills
+
+| Book | Author | Focus |
+|------|--------|-------|
+| The Manager's Path | Camille Fournier | Tech leadership |
+| Staff Engineer | Will Larson | Beyond senior dev |
+| An Elegant Puzzle | Will Larson | Engineering management |
+| Radical Candor | Kim Scott | Feedback & leadership |
+| Soft Skills to Advance Your Developer Career | Zsolt Nagy | EQ for devs |
+
+## Data & Analytics (Non-ML)
+
+| Book | Author | Focus |
+|------|--------|-------|
+| Storytelling with Data | Cole Nussbaumer Knaflic | Data visualization |
+| Data Science for Business | Provost & Fawcett | DS for decision makers |
+| Lean Analytics | Croll & Yoskovitz | Metrics for startups |
+
+## Writing & Communication
+
+| Book | Author | Focus |
+|------|--------|-------|
+| Docs for Developers | Bhatti et al. | Technical writing |
+| Every Page is Page One | Mark Baker | Topic-based writing |
+
+## Hidden Gems
+
+| Book | Author | Focus |
+|------|--------|-------|
+| The Geek Atlas | John Graham-Cumming | 128 places of science & tech history |
+| Just Enough Research | Erika Hall | Quick practical research methods |
+| 97 Things Every Programmer Should Know | Various | Wisdom from practitioners |
