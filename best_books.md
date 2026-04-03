@@ -26,6 +26,10 @@
 | Crossing the Chasm | Geoffrey Moore | Technology adoption lifecycle |
 | Traction | Gabriel Weinberg & Justin Mares | 19 traction channels |
 | Obviously Awesome | April Dunford | Product positioning |
+| The Innovator's Dilemma | Clayton Christensen | Why companies fail, disruption |
+| The E-Myth Revisited | Michael Gerber | Work on your business, not in it |
+| The Outsiders | William Thorndike | Capital allocation, unconventional CEOs |
+| Start with Why | Simon Sinek | Purpose-driven leadership |
 
 ## Productivity & Habits
 
@@ -39,6 +43,8 @@
 | The One Thing | Gary Keller & Jay Papasan | Focus on single priority |
 | Four Thousand Weeks | Oliver Burkeman | Embrace finite time |
 | Make Time | Jake Knapp & John Zeratsky | Daily highlight framework |
+| The Power of Habit | Charles Duhigg | Science of habit formation |
+| Grit | Angela Duckworth | Passion and perseverance beat talent |
 
 ## Decision Making & Mental Models
 
@@ -48,6 +54,37 @@
 | The Black Swan | Nassim Nicholas Taleb | Embracing uncertainty |
 | Thinking in Systems | Donella Meadows | Systems thinking primer |
 | Poor Charlie's Almanack | Charlie Munger | Mental models collection |
+| Blink | Malcolm Gladwell | Power of intuitive thinking |
+| The Great Mental Models | Shane Parrish | Frameworks for better thinking |
+| Factfulness | Hans Rosling | See the world accurately using data |
+| The Demon-Haunted World | Carl Sagan | Scientific skepticism, critical thinking |
+
+## Communication & Influence
+
+| Book | Author | Why |
+|------|--------|-----|
+| How to Win Friends and Influence People | Dale Carnegie | Building relationships, influence |
+| Influence: The Psychology of Persuasion | Robert Cialdini | Six principles of persuasion |
+| Never Split the Difference | Chris Voss | FBI negotiation tactics |
+| Captivate | Vanessa Van Edwards | Science of social skills |
+
+## Psychology & Human Behavior
+
+| Book | Author | Why |
+|------|--------|-----|
+| Mindset | Carol Dweck | Growth vs fixed mindset |
+| Emotional Intelligence | Daniel Goleman | EQ skills for success |
+| Man's Search for Meaning | Viktor Frankl | Finding purpose in suffering |
+| Predictably Irrational | Dan Ariely | Hidden forces that shape decisions |
+
+## Philosophy & Wisdom
+
+| Book | Author | Why |
+|------|--------|-----|
+| Meditations | Marcus Aurelius | Stoic philosophy for daily life |
+| The Sovereign Individual | Davidson & Rees-Mogg | Technology transforms society |
+| What Does It All Mean? | Thomas Nagel | Introduction to philosophy |
+| Zen and the Art of Motorcycle Maintenance | Robert Pirsig | Philosophy of quality |
 
 ## Writing
 
@@ -59,6 +96,16 @@
 | Bird by Bird | Anne Lamott | The writing life |
 | Self-Editing for Fiction Writers | Renni Browne & Dave King | Fiction craft |
 | Writing Down the Bones | Natalie Goldberg | Freewriting practice |
+| Writing Tools | Roy Peter Clark | 50 practical writing strategies |
+| Stein on Writing | Sol Stein | Art of satisfying readers |
+
+## Creativity
+
+| Book | Author | Why |
+|------|--------|-----|
+| The Artist's Way | Julia Cameron | Unlocking creativity |
+| Steal Like an Artist | Austin Kleon | Creative process |
+| The War of Art | Steven Pressfield | Overcoming resistance |
 
 ## Math & Science (Self-Study)
 
@@ -77,6 +124,27 @@
 | Why We Sleep | Matthew Walker | Sleep science |
 | The Body Keeps the Score | Bessel van der Kolk | Trauma and the body |
 | A Short History of Nearly Everything | Bill Bryson | Science overview |
+| Sapiens | Yuval Noah Harari | Human history, how we got here |
+| The Selfish Gene | Richard Dawkins | Evolution from gene's perspective |
+| The Joy of Science | Jim Al-Khalili | Eight lessons for rational life |
+
+## Economics
+
+| Book | Author | Why |
+|------|--------|-----|
+| Economics in One Lesson | Henry Hazlitt | Think like an economist |
+| Basic Economics | Thomas Sowell | Economic principles without math |
+| Freakonomics | Levitt & Dubner | Economics applied to everyday life |
+| Good Economics for Hard Times | Banerjee & Duflo | Nobel winners on modern problems |
+
+## History & Perspective
+
+| Book | Author | Why |
+|------|--------|-----|
+| The Lessons of History | Will & Ariel Durant | Patterns from human history (~100 pages) |
+| Educated | Tara Westover | Power of education, overcoming limits |
+| The Immortal Life of Henrietta Lacks | Rebecca Skloot | Medical ethics, science and consent |
+| Guns, Germs, and Steel | Jared Diamond | Why civilizations rose where they did |
 
 ## Tech Biographies & Memoirs
 
@@ -128,3 +196,45 @@
 | An Elegant Puzzle | Will Larson | Engineering management |
 | Radical Candor | Kim Scott | Feedback and leadership |
 | High Output Management | Andy Grove | Intel CEO's management classic |
+
+---
+
+## Top 10 Most Recommended (Start Here)
+
+These appear on nearly every "best books" list:
+
+1. **Thinking, Fast and Slow** - Kahneman
+2. **Sapiens** - Harari
+3. **Atomic Habits** - Clear
+4. **How to Win Friends and Influence People** - Carnegie
+5. **Meditations** - Marcus Aurelius
+6. **Influence** - Cialdini
+7. **Man's Search for Meaning** - Frankl
+8. **Poor Charlie's Almanack** - Munger
+9. **Deep Work** - Newport
+10. **The Lessons of History** - Durant
+
+---
+
+## Reading Order Suggestion
+
+**Foundation (read first):**
+1. Thinking, Fast and Slow (understand your brain)
+2. Atomic Habits (build learning habits)
+3. Deep Work (learn to focus)
+
+**Then by interest:**
+- Business: Good to Great, Innovator's Dilemma, Zero to One
+- People: How to Win Friends, Influence, Never Split the Difference
+- Meaning: Man's Search for Meaning, Meditations
+- Science: Sapiens, A Short History of Everything
+- Writing: On Writing, Elements of Style
+- Programming: Code Complete, Design Patterns, SICP
+
+---
+
+## Notes
+
+- Most books are available at libraries or as audiobooks
+- Start with the Top 10 list
+- One book per month = 12 books/year = life-changing
