@@ -1,6 +1,6 @@
 # Learning Progress
 
-Last updated: 2025-04-02
+Last updated: 2025-04-03
 
 ---
 
@@ -217,6 +217,39 @@ Progress: 0/7
 ---
 
 ## Writing
+
+### On Writing Well - William Zinsser
+
+| # | Chapter | Status |
+|---|---------|--------|
+| 01 | The Transaction | [x] |
+| 02 | Simplicity | [x] |
+| 03 | Clutter | [x] |
+| 04 | Style | [x] |
+| 05 | The Audience | [~] In Progress |
+| 06 | Words | [ ] |
+| 07 | Usage | [ ] |
+| 08 | Unity | [ ] |
+| 09 | The Lead and the Ending | [ ] |
+| 10 | Bits & Pieces | [ ] |
+| 11 | Nonfiction as Literature | [ ] |
+| 12 | Writing About People | [ ] |
+| 13 | Writing About Places | [ ] |
+| 14 | Writing About Yourself | [ ] |
+| 15 | Science and Technology | [ ] |
+| 16 | Business Writing | [ ] |
+| 17 | Sports | [ ] |
+| 18 | Writing About the Arts | [ ] |
+| 19 | Humor | [ ] |
+| 20 | The Sound of Your Voice | [ ] |
+| 21 | Enjoyment, Fear and Confidence | [ ] |
+| 22 | The Tyranny of the Final Product | [ ] |
+| 23 | A Writer's Decisions | [ ] |
+| 24 | Write as Well as You Can | [ ] |
+
+Progress: 4/24
+
+### Writing Goals
 
 | Topic | Status |
 |-------|--------|
