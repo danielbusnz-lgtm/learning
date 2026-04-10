@@ -26,8 +26,8 @@ with Session(engine) as session:
         temp_hi = 40,
             )
 #   session.add(Miami)
-    result = session.execute(select(Weather).where((Weather.temp_lo > 10) & (Weather.temp_hi < 50) )).scalars().all()
-    session.executej(select(Weather).where(city = 'Miami') = 10;
+
+    miami = session.get(Weather,'Miami')
+    miami.Weather.remove(temp_hi)
     session.commit()
-    print(result)
-    print(type(Weather.city))
+    print(miami)
