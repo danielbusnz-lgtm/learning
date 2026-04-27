@@ -1,0 +1,11 @@
+# Java
+*.class
+
+# Python
+__pycache__/
+*.pyc
+
+# Editors
+.vscode/
+.idea/
+*.swp
