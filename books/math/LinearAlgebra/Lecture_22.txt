@@ -1,0 +1,261 @@
+Lecture 22 (April 12)
+
+Reading: Section 6.1
+Viewing: Lecture 21
+Just like in the last few classes, we’re sticking with square matrices, so let A be an n×n matrix.
+The goal is to make the matrix “as simple as possible”. What this means precisely might be the
+subject of some debate, but some of the simplest square matrices out there are diagonal ones:
+diagd1,...,dn =
+
+
+d1
+0
+. . .
+0
+0
+d2
+. . .
+0
+...
+...
+...
+...
+0
+0
+. . .
+dn
+
+
+(181)
+Indeed, the linear transformation Rn →Rn that corresponds to diagd1,...,dn simply scales along
+the unit vectors e1, . . . , en of the coordinate axes (speciﬁcally, it scales by a factor of di along the
+i–th coordinate axis of Rn). As we have seen in (159), we have det(diagd1,...,dn) = d1 . . . dn, which
+reﬂects the fact that our linear transformation scales volumes by a factor equal to d1 . . . dn.
+Deﬁnition 18. A matrix is called diagonalizable if it is similar to a diagonal matrix, i.e.:
+A = V · diagd1,...,dn · V −1
+(182)
+for some invertible n × n matrix V , and some numbers d1, . . . , dn.
+The property (182) means that the linear transformation Rn →Rn that corresponds to A scales
+by a factor of di in the direction of the vector vi, where vi is the i–th column of V . Therefore, a
+diagonalizable matrix is diagonal in the basis v1, . . . , vn of Rn.
+Remark. Almost all n × n matrices are diagonalizable, and next week we will see what one can
+say about those matrices which are not.
+Suppose you knew that the matrix A is diagonalizable, but you didn’t know the speciﬁc numbers
+di and the matrix V . You could reconstruct them from the notion of eigenvalues and eigenvectors:
+Deﬁnition 19. Given a n × n matrix A, a non-zero vector v ∈Rn is called an eigenvector if:
+Av = λv
+(183)
+for some number λ called an eigenvalue.
+Indeed, v is an eigenvector of A with corresponding eigenvalue λ if the linear transformation cor-
+responding to A scales by a factor of λ in the direction of the vector v. This story is very closely
+connected with (182): if the matrix A is equal to V diagd1,...,dnV −1, then all the di’s are eigenvalues
+of A and the corresponding eigenvectors are the columns of V .
+So how many eigenvalues/eigenvectors are there? It’s easy to see that if v is an eigenvector, then so is
+any multiple of v. Moreover, if v and w are both eigenvectors corresponding to the same eigenvalue
+78
+λ, then v + w is also an eigenvector corresponding to λ. Therefore, a better question would be
+“how many linearly independent eigenvectors are there”? Well, from the equation (183) we obtain:
+(A −λI)v = 0
+Since v is supposed to be non-zero, this implies that the matrix A −λI should be singular (i.e. not
+invertible). Therefore, Fact 15 implies that:
+det(A −λI) = 0
+(184)
+for any eigenvalue λ of A. Conversely, any number λ for which (184) holds is an eigenvalue of A
+(try to think of an argument). This leads us to the following:
+Deﬁnition 20. The characteristic polynomial of A is:
+p(λ) = det(A −λI)
+(185)
+as a function of the variable λ. The roots (i.e. those numbers λ for which p(λ) = 0) of the charac-
+teristic polynomial are the eigenvalues of A.
+Although not very practical, you could in theory compute the characteristic polynomial by applying
+the big formula (167) for the determinant:
+p(λ) = det
+
+
+a11 −λ
+a12
+. . .
+a1n
+a21
+a22 −λ
+. . .
+a2n
+...
+...
+...
+...
+an1
+an2
+. . .
+ann −λ
+
+=
+permutations
+X
+{σ(1),...,σ(n)}
+(−1)sgn σa′
+1σ(1)a′
+2σ(2) . . . a′
+nσ(n)
+where a′
+ij = aij if i ̸= j and a′
+ii = aii−λ. Since every summand in the right-hand side is a product of
+n numbers a′
+ij for various i and j, no summand can contain more than n factors of λ. Moreover, the
+only summand which contains exactly n factors of λ is a′
+11a′
+22 . . . a′
+nn = (a11−λ)(a22−λ) . . . (ann−λ).
+Therefore, the characteristic polynomial has degree n in λ and its top degree coeﬃcient is (−1)n:
+p(λ) = (−1)nλn + αn−1λn−1 + · · · + α1λ + α0
+The coeﬃcients αn−1, . . . , α0 depend on the entries of the matrix A. For example:
+αn−1 = (−1)n−1 · tr A
+(186)
+where:
+tr A = a11 + a22 + · · · + an−1,n−1 + ann
+(187)
+is called the trace of the matrix A. Clearly:
+α0 = det A
+(188)
+is just the determinant of A (this is just saying that the value of the characteristic polynomial at
+λ = 0 is the determinant of A, which is obvious given the deﬁnition (185)). Because of Vieta’s
+formulas, which express the sum/product of the roots of a polynomial in terms of its coeﬃcients,
+we conclude the following:
+79
+Fact 17. The sum of the eigenvalues of a matrix A is equal to the trace of A.
+The product of the eigenvalues of a matrix A is the determinant of A.
+As an exercise, compute the eigenvalues of the matrix:
+A =
+2
+1
+5
+2
+
+(189)
+First let us form the characteristic polynomial:
+p(λ) = det(A −λI) = det
+2 −λ
+1
+5
+2 −λ
+
+= (2 −λ)(2 −λ) −5 · 1 = λ2 −4λ −1
+The eigenvalues of A are the roots of this polynomial, which you can get by the quadratic formula:
+λ = 4 ±
+√
+42 + 4
+2
+= 2 ±
+√
+5
+⇒
+(
+λ1 = 2 +
+√
+5
+λ2 = 2 −
+√
+5
+In general, because the eigenvalues of a 2 × 2 matrix are the solutions of a quadratic equation, you
+should expect to encounter square roots in their formulas. As we have seen in the example above,
+in the 2 × 2 case, one can deduce the formula for the characteristic polynomial from the facts that:
+• it is quadratic and its leading coeﬃcient is 1
+• its linear term is minus the trace of the matrix (186)
+• its constant term is the determinant of a matrix (188)
+So the characteristic polynomial of the matrix
+a
+b
+c
+d
+
+is:
+p(λ) = λ2 −λ(a + d) + (ad −bc)
+(190)
+For matrices of size 3 × 3 and higher, the characteristic polynomial is of order 3 and higher, so it
+is a bit more complicated to write it down and a lot more complicated to ﬁnd its roots.
+Remark. In general, it is NOT true that the eigenvalues of A+B are the sums of the eigenvalues
+of A and B, nor are the eigenvalues of AB the products of the eigenvalues of A and B.
+Now suppose that you know λ is an eigenvalue of a square matrix A; how do you ﬁnd an eigenvector
+v such that Av = λv? You already have the tools for this: just recast the eigenvector relation as
+(A −λI)v = 0, so all you need to do is to ﬁnd v ̸= 0 in the nullspace of the singular matrix A −λI.
+80
+For example, in the case of the matrix (189), let us look for an eigenvector v corresponding to the
+eigenvalue λ = 2 +
+√
+5. To this end, let us construct the matrix:
+A −λI =
+−
+√
+5
+1
+5
+−
+√
+5
+
+and we will simply pick a vector v ∈N(A−λI). Remember that, in order to compute the nullspace
+of a matrix, the way to go is to put it in reduced row echelon form:
+−
+√
+5
+1
+5
+−
+√
+5
+
+⇝
+
+−
+√
+5
+1
+0
+0
+
+⇝
+"
+1
+−1
+√
+5
+0
+0
+#
+Therefore, an eigenvector v =
+v1
+v2
+
+can be obtained by solving the equation:
+"
+1
+−1
+√
+5
+0
+0
+# v1
+v2
+
+= 0
+⇔
+v1 −v2
+√
+5 = 0
+So one particular choice of eigenvector can be obtained by setting the free variable v2 equal to 1,
+and solving for the pivot variable from the equation above: v1 =
+1
+√
+5. Therefore, an eigenvector of
+the matrix A corresponding to the eigenvalue λ = 2 +
+√
+5 is:
+v =
+"
+1
+√
+5
+1
+#
+Any multiple of v would be an equally good eigenvector.
+81

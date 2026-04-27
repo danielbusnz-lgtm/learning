@@ -1,0 +1,285 @@
+Lecture 25 (April 21)
+
+Reading: Section 9.1
+Viewing: none
+Consider the problem of diagonalizing the matrix:
+A =
+0
+−1
+1
+0
+
+(208)
+As we have seen in Fact 19, the recipe for doing so is to ﬁnd the eigenvalues and eigenvectors of A
+ﬁrst. Now, the eigenvalues are the roots of the characteristic polynomial:
+p(λ) = det
+−λ
+−1
+1
+−λ
+
+= λ2 + 1
+(209)
+You may be tempted to believe that this polynomial has no roots, because after all, no real number
+has the property that its square is −1. And your guess would seem to be justiﬁed: the linear
+transformation corresponding to the matrix (208) is rotation by 90 degrees of the plane. If the
+matrix had an eigenvector, then rotation by 90 degrees would have to scale along the direction of
+that eigenvector, which does not seem to make any sense geometrically.
+However, in math, a paradox is rarely the end of the story, but more often it is the catalyst for
+new discoveries. In the example at hand, the way to ﬁx the fact that the polynomial (209) has no
+solutions is to add these solutions by hand. What this means is that we are no longer satisﬁed with
+real numbers, and instead we want to consider the imaginary number:
+i
+deﬁned such that
+i2 = −1
+(210)
+which is often abbreviated as saying i = √−1. You should read this as saying that i is deﬁned to
+be the square root of −1, and it certainly is not a real number. But it is a very useful tool for
+deﬁning complex numbers, which are by deﬁnition all expressions of the form:
+z = a + bi
+(211)
+for any real numbers a and b. You may ask: why don’t we also throw in various powers of i into
+the expression (211) while we’re at it? The reason is that doing so would be redundant, since the
+powers of i can themselves be expressed in the form (211):
+i2 = −1
+i3 = −i
+i4 = 1
+i5 = i
+i6 = −1
+. . .
+(212)
+Remark. I hope you won’t be put oﬀby the feeling that complex numbers are “contrived”. In
+the past, people have argued for hundreds of years whether negative integers make any sense, and
+ultimately we accepted them. And if you think about it, what is the meaning of “−2” other than
+“the thing to which you add 2 to get 0” and what is the meaning of “
+√
+3” other than “the thing
+which you square to get 3”. Similarly, “i” is deﬁned as “the thing which you square to get −1”.
+Complex numbers can be added and multiplied using the usual algebra operations:
+(a + ib) + (c + id) = (a + c) + i(b + d)
+(213)
+90
+(a + ib)(c + id) = ac + adi + bci + bdi2 = (ac −bd) + (ad + bc)i
+(214)
+so the sum and product of complex numbers is also a complex number. But complex numbers have
+other kinds of operations associated to them. If z = a + bi is a complex number, then:
+Re z = a is called the real part of z
+(215)
+Im z = b is called the imaginary part of z
+(216)
+¯z = a −bi is called the conjugate of z
+(217)
+Therefore, the conjugate of a complex number is that complex number with the same real part,
+but the opposite imaginary part. Moreover, deﬁne the absolute value of a complex number as:
+|z| =
+p
+a2 + b2
+(218)
+If this looks familiar, then it should! Since a complex number (211) is just a pair of real numbers,
+it encodes the same information as a point in the plane, or a vector in R2. Then the absolute value
+of the complex number is just the length of the corresponding vector. Let us prove that:
+z¯z = |z|2
+(219)
+Indeed, this is because:
+(a + bi)(a −bi) = a2 −abi + abi −b2i2 = a2 + b2
+Formula (219) is important because it allows us to write:
+1
+z =
+¯z
+|z|2
+i.e.
+1
+a + bi = a −bi
+a2 + b2
+(220)
+and this is great because it allows us to divide complex numbers:
+2 + i
+4 + 3i = (2 + i)(4 −3i)
+42 + 32
+= 8 −6i + 4i −3i2
+25
+= 11
+25 −2
+25i
+Example 7. We now have the tools to diagonalize the matrix (208). Its characteristic polynomial
+has two roots, which are complex numbers:
+p(λ) = λ2 + 1 = (λ −i)(λ + i)
+has roots
+(
+λ1 = i
+λ2 = −i
+so the eigenvalues are i and −i. Now we need to ﬁnd eigenvectors corresponding to these eigenvalues:
+Av1 = iv1
+⇒
+(A −iI)v1 = 0
+⇒
+v1 ∈N(A −iI)
+Av2 = −iv2
+⇒
+(A + iI)v2 = 0
+⇒
+v2 ∈N(A + iI)
+To compute the nullspaces in question, we perform our good friend Gaussian elimination:
+A −iI =
+−i
+−1
+1
+−i
+
+REF
+⇝
+−i
+−1
+0
+0
+
+91
+just by adding (−i) times the ﬁrst row to the second row. Therefore, v1 =
+x
+y
+
+lies in N(A −iI) if:
+−i
+−1
+0
+0
+ x
+y
+
+= 0
+⇒
+−ix −y = 0
+so a choice of eigenvector for the eigenvalue i is v1 =
+ 1
+−i
+
+. Similarly, one ﬁnds that a choice of
+eigenvector for the eigenvalue −i is v2 =
+1
+i
+
+. Therefore, Fact 19 implies that:
+0
+−1
+1
+0
+
+= V
+i
+0
+0
+−i
+
+V −1
+where
+V =
+ 1
+1
+−i
+i
+
+and this concludes the diagonalization of the matrix A of (208).
+Any real number can also be interpreted as a complex number, with imaginary part 0. With this
+in mind, we note that any quadratic polynomial has two complex roots, speciﬁcally:
+ax2 + bx + c = 0
+has solutions
+−b ±
+√
+b2 −4ac
+2a
+(221)
+If b2 −4ac ≥0, the solutions are real numbers. However, if b2 −4ac < 0, the square root in formula
+(221) will be an imaginary number (i.e. a multiple of i) and the solutions are complex non-real
+numbers. What’s more, it turns out that complex numbers allow us to ﬁnd roots of arbitrary
+polynomials. To this end, the fundamental theorem of algebra states that:
+any polynomial of degree n has exactly n complex roots
+(222)
+where the word “exactly” should be taken to mean “counted with multiplicities”, as in Lecture 23.
+Let’s discuss one more feature of complex numbers, which is very useful in computations: the polar
+form. As we have seen, a complex number can be represented as a point in the plane via Cartesian
+coordinates:
+z = a + ib
+⇝
+(a, b)
+However, we can also represent the same point via polar coordinates:
+z = a + ib
+⇝
+(r, θ)
+where r =
+√
+a2 + b2 is the absolute value of z (i.e. the size of a circle around the origin where the
+point is located) and θ ∈[0, 2π) is the angle between the point in question and the horizontal line:
+cos θ =
+a
+√
+a2 + b2
+⇒
+θ = arccos
+
+a
+√
+a2 + b2
+
+The angle θ is called the argument of z, and is only deﬁned up to adding arbitrary integer multiples
+of 2π (because θ and θ + 2π determine the same angle, there is an inherent ambiguity in the notion
+of “argument”). Since (cos θ)2 + (sin θ)2 = 1, we have sin θ =
+b
+√
+a2+b2 and therefore:
+z = a + bi = r(cos θ + i sin θ)
+(223)
+92
+The above is called the polar form of z. Recall the Taylor series expansions of cos θ and sin θ:
+cos θ = 1 −θ2
+2! + θ4
+4! + . . .
+sin θ = θ −θ3
+3! + θ5
+5! + . . .
+which implies that:
+cos θ + i sin θ = 1 + iθ −θ2
+2! −iθ3
+3! + θ4
+4! + iθ5
+5! −. . .
+The right-hand side is the Taylor series of eiθ (see (212)), so we obtain the following identity:
+eiθ = cos θ + i sin θ
+(224)
+The polar form (223) of a complex number can therefore be written in a nicer form as:
+z = a + bi = reiθ
+(225)
+Since |eiθ| = 1, the polar form of a complex number can be said to separate its absolute value part
+(namely r) from its angular part (namely eiθ). One of the good things about the polar form is that,
+as opposed from the Cartesian form, it’s handy for multiplying numbers and raising to powers:
+zn = rneinθ
+(226)
+and:
+zz′ = rr′ei(θ+θ′)
+(227)
+if z = reiθ and z′ = r′eiθ′. In other words, we have:
+|zz′| = |z||z′|
+arg(zz′) = arg(z) + arg(z′)
+(the sum of arguments formula only holds up to adding integer multiples of 2π). Formula (226)
+allows us to describe the roots of unity, i.e. solutions of:
+zn = 1
+(228)
+If z is a real number, the only solution to this equation is z = 1 (and also z = −1 if n is even),
+but the equation in question has more solutions in the world of complex numbers. Speciﬁcally, as
+a consequence of the fundamental theorem of algebra (222), we expect the equation (228) to have
+n complex solutions. If z = reiθ, then combining formulas (226) and (228) gives us:
+rneinθ = 1
+Since r is a positive real number, we must have r = 1. Since θ is an angle, the equation above
+implies nθ to be an even integral multiple of 2π. Therefore, we conclude that the solutions of the
+equation (228), namely the n–th roots of unity, are:
+1, e
+2πi
+n , e
+4πi
+n , . . . , e
+2(n−1)πi
+n
+(229)
+There’s no need to go beyond the (n −1)–th multiple of 2π
+n , since then we will just recover the
+same numbers over again (this is simply because θ and θ + 2π represent the same angle).
+93

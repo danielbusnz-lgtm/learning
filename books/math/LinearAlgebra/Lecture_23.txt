@@ -1,0 +1,617 @@
+Lecture 23 (April 14)
+
+Reading: Section 6.2
+Viewing: Lecture 21
+In the previous class, we saw how to compute the eigenvalues and eigenvectors of an n × n
+matrix A. Speciﬁcally, the eigenvalues are the roots of the characteristic polynomial:
+p(λ) = det(A −λI) = 0
+Since the characteristic polynomial has degree n, it has at most n roots, therefore there are at most
+n eigenvalues. But there could be fewer than n eigenvalues, for example the matrix:
+A =
+5
+−3
+0
+5
+
+has characteristic polynomial
+p(λ) = (λ −5)2
+which has λ = 5 as a double root. In this case, we say that λ = 5 has algebraic multiplicity 2,
+or that the matrix A has repeated (or equal) eigenvalues. In other words, we still think of A has
+having two eigenvalues, but they are both equal to 5. With this in mind, we have:
+Fact 18. An n × n matrix has exactly n eigenvalues, although some could be repeated, and some
+could be complex numbers (more on complex numbers later).
+So what can we say about eigenvectors? First of all, eigenvectors corresponding to diﬀerent eigen-
+values are always linearly independent. For example, if:
+Av1 = λ1v1
+and
+Av2 = λ2v2
+for λ1 ̸= λ2, then there can be no linear relation between v1 and v2 (argument: if there were
+such a relation, then we would have v1 = cv2 for some scalar c, and applying A would give us
+λ1v1 = Av1 = cAv2 = cλ2v2 = λ2v1, which would force λ1 = λ2). So the best case is when
+the n eigenvalues of the matrix are all distinct numbers, because then there would exist n linearly
+independent eigenvectors, one for each eigenvalue. These eigenvectors would form a basis of Rn.
+Fact 19. An n × n matrix A with n distinct eigenvalues λ1, . . . , λn is diagonalizable. Speciﬁcally:
+A = V
+
+
+λ1
+0
+. . .
+0
+0
+λ2
+. . .
+0
+...
+...
+...
+...
+0
+0
+. . .
+λn
+
+V −1
+(191)
+where V is the matrix whose columns are v1, . . . , vn, the eigenvectors corresponding to λ1, . . . , λn.
+A couple of remarks: if the eigenvalues are all distinct, then the eigenvectors are really only deﬁned
+up to constant multiple. So the matrix V in (191) is not unique, but it depends on a choice of con-
+stant multiples of the eigenvectors. Secondly, the fact that the eigenvectors are linearly independent
+82
+(which was discussed right before Fact 19) is crucial, because otherwise the matrix V would have
+rank < n and would not be invertible and the right-hand side of formula (191) would not make sense.
+In practice, how to diagonalize (i.e. to write as in (191)) a matrix A? As explained in Fact 19, the
+way to do so is to ﬁnd the eigenvalues and eigenvectors of A. Say we’re looking at the matrix:
+A =
+1
+1
+1
+0
+
+(192)
+To ﬁnd its eigenvalues, construct the characteristic polynomial:
+p(λ) = λ2 −λ · tr A + det A = λ2 −λ −1
+(here we’re applying the shortcut formula (190), which only holds in the 2 × 2 case). Its roots are:
+λ1 = 1 +
+√
+5
+2
+and
+λ2 = 1 −
+√
+5
+2
+Let us now compute eigenvectors corresponding to these two eigenvalues:
+Av1 = 1 +
+√
+5
+2
+v1
+⇒
+ 
+A −1 +
+√
+5
+2
+I
+!
+v1 = 0
+⇒
+v1 ∈N
+ 
+A −1 +
+√
+5
+2
+I
+!
+Av2 = 1 −
+√
+5
+2
+v2
+⇒
+ 
+A −1 −
+√
+5
+2
+I
+!
+v2 = 0
+⇒
+v2 ∈N
+ 
+A −1 −
+√
+5
+2
+I
+!
+To work out the nullspace of A −1+
+√
+5
+2
+I, put it in row echelon form:
+A −1 +
+√
+5
+2
+I =
+"
+1−
+√
+5
+2
+1
+1
+−1−
+√
+5
+2
+#
+⇝
+"
+1−
+√
+5
+2
+1
+0
+0
+#
+So the eigenvector v1 =
+x
+y
+
+needs to satisfy:
+"
+1−
+√
+5
+2
+1
+0
+0
+# x
+y
+
+= 0
+⇔
+y + 1 −
+√
+5
+2
+x = 0
+and therefore we may take v1 =
+"
+1
+−1+
+√
+5
+2
+#
+. Similarly, v2 =
+"
+1
+−1−
+√
+5
+2
+#
+, so we have:
+A = V
+"
+1+
+√
+5
+2
+0
+0
+1−
+√
+5
+2
+#
+V −1
+where
+V =
+"
+1
+1
+−1+
+√
+5
+2
+−1−
+√
+5
+2
+#
+(193)
+So we’ve done all this work, but you might ask: what are applications of diagonalization? Well,
+here’s a classic one. Let’s say you want to obtain an explicit formula for the Lucas numbers (close
+cousins of the Fibonacci numbers considered in the textbook), which are deﬁned by the conditions:
+L0 = 2,
+L1 = 1,
+and the recursive relation
+Ln+1 = Ln + Ln−1
+(194)
+83
+for all n ≥1. One way would be to consider the vectors:
+an =
+Ln+1
+Ln
+
+and to observe that the conditions (194) can be interpreted as the matrix identities:
+a0 =
+1
+2
+
+and
+an =
+1
+1
+1
+0
+
+an−1
+for all n ≥1. You can iterate the latter formula and obtain:
+an = Aan−1 = A2an−2 = · · · = Ana0 = An
+1
+2
+
+(195)
+where A is the matrix (192). So computing a formula for the Lucas numbers boils down to having
+an eﬀective method for explicitly computing the matrix powers An for all natural numbers n. This
+is quite straightforward if you kow how to diagonalize A. Speciﬁcally, because A can be written in
+the form (193), we have:
+A2 = V
+"
+1+
+√
+5
+2
+0
+0
+1−
+√
+5
+2
+#
+V −1V
+| {z }
+I
+"
+1+
+√
+5
+2
+0
+0
+1−
+√
+5
+2
+#
+V −1 = V
+
+
+
+1+
+√
+5
+2
+2
+0
+0
+
+1−
+√
+5
+2
+2
+
+V −1
+A3 = V
+"
+1+
+√
+5
+2
+0
+0
+1−
+√
+5
+2
+#
+V −1V
+| {z }
+I
+"
+1+
+√
+5
+2
+0
+0
+1−
+√
+5
+2
+#
+V −1V
+| {z }
+I
+"
+1+
+√
+5
+2
+0
+0
+1−
+√
+5
+2
+#
+V −1 = V
+
+
+
+1+
+√
+5
+2
+3
+0
+0
+
+1−
+√
+5
+2
+3
+
+V −1
+. . .
+An = V
+
+
+
+1+
+√
+5
+2
+n
+0
+0
+
+1−
+√
+5
+2
+n
+
+V −1
+for all integers n. We could plug these formulas in (195) and obtain:
+Ln+1
+Ln
+
+= an = V
+
+
+
+1+
+√
+5
+2
+n
+0
+0
+
+1−
+√
+5
+2
+n
+
+V −1
+1
+2
+
+=
+=
+"
+1
+1
+−1+
+√
+5
+2
+−1−
+√
+5
+2
+# 
+
+
+1+
+√
+5
+2
+n
+0
+0
+
+1−
+√
+5
+2
+n
+
+
+1
+−
+√
+5
+"
+−1−
+√
+5
+2
+−1
+1−
+√
+5
+2
+1
+# 1
+2
+
+I’ll let you have all the fun in multiplying the matrices on the bottom row above. When you do so,
+you will ﬁnally obtain the formula for the Lucas numbers:
+Ln =
+ 
+1 +
+√
+5
+2
+!n
++
+ 
+1 −
+√
+5
+2
+!n
+(196)
+The example we have just seen generalizes to the following principle:
+if
+A = V
+
+
+λ1
+. . .
+0
+...
+...
+...
+0
+. . .
+λn
+
+V −1
+then
+Ak = V
+
+
+λk
+1
+. . .
+0
+...
+...
+...
+0
+. . .
+λk
+n
+
+V −1
+(197)
+84
+This is computationally very important, because if you want to compute the k–th power of an
+n × n matrix eﬃciently for some really large number k, it is faster to just diagonalize A and apply
+formula (197). Also, this formula allows us to describe the behavior of Ak as k →∞: its growth
+rate is dominated by the size of the k–th power of the largest eigenvalue of A.
+Remark. The Lucas numbers Ln grow like
+
+1+
+√
+5
+2
+n
+as n →∞. This makes sense, since the other
+eigenvalue 1−
+√
+5
+2
+lies between −1 and 1, and so its n–th powers will converge to 0 as n →∞.
+Geometrically, suppose you want to compute the value of Ak applied to any vector v? Just decom-
+pose this vector as a linear combination of the eigenvectors:
+v = c1v1 + · · · + cnvn
+⇒
+Akv = c1Akv1 + · · · + cnAkvn
+Since Avi = λivi ⇒Akvi = λk
+i vi for all i (on account of v1, . . . , vn being eigenvectors), we get:
+Akv = c1λk
+1v1 + · · · + cnλk
+nvn
+(198)
+We conclude that the powers of A scale by powers of the eigenvalues λ1, . . . , λn in the direction of
+the eigenvectors v1, . . . , vn, and this gives an eﬀective way to compute Ak times any vector.
+Finally, let us mention an easy, but fundamental thing: the eigenvalues of a diagonal matrix
+are the entries on the diagonal. This is because the roots of the polynomial:
+det
+
+
+
+
+
+
+
+d1
+0
+. . .
+0
+0
+d2
+. . .
+0
+...
+...
+...
+...
+0
+0
+. . .
+dn
+
+−λ · I
+
+
+
+
+= det
+
+
+d1 −λ
+0
+. . .
+0
+0
+d2 −λ
+. . .
+0
+...
+...
+...
+...
+0
+0
+. . .
+dn −λ
+
+= (d1 −λ) . . . (dn −λ)
+are precisely d1, . . . , dn. Applying this to (191), we see that the matrices A and diagλ1,...,λn have
+the same eigenvalues. This is true for any pair of similar matrices:
+if A = V BV −1 then A and B have the same eigenvalues
+(199)
+for any invertible matrix V . However, A and B will in general have diﬀerent eigenvectors, and
+these two bases of eigenvectors will be connected by the change of basis matrix V in formula (199):
+V w is an eigenvector of A
+⇔
+w is an eigenvector of B
+85

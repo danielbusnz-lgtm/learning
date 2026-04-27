@@ -1,0 +1,270 @@
+Lecture 12 (March 15)
+
+Reading: Section 4.2
+Viewing: Lecture 15
+We will now give a rigorous deﬁnition of projections.
+Deﬁnition 13. Given a vector b ∈Rn and a linear subspace V ⊂Rn, the (orthogonal) projec-
+tion of b onto V is the unique vector:
+p = projV b ∈V
+such that (b −p) ⊥V . Put diﬀerently, p is the closest vector in V to b.
+Intuitively, suppose you want to measure a quantity, which general theory tells you must be a vector
+p in a subspace V ⊂Rn. However, your measurement will probably have an error, and you might
+get a value b outside of V . Then your best guess for the actual value p ∈V is to set it equal to
+the orthogonal projection of b on V , since this is the closest vector in V to the measured value b.
+That is also why the vector e = b −p is sometimes called the error.
+Let us work out formulas for the projection of a vector b =
+
+
+b1
+...
+bn
+
+. The easiest case is when V is
+one dimensional, i.e. the line spanned by a vector a =
+
+
+a1
+...
+an
+
+. Then the orthogonal projection p
+must be a multiple of this vector, so we are looking for:
+p = λa
+such that
+(b −λa) ⊥a
+Using the dot product interpretation of perpendicularity, we need:
+0 = (b −λa) · a
+⇒
+λ = a · b
+a · a = aT b
+aT a
+So the formula for the projection of b onto the line spanned by a single vector a is:
+projab = a
+aT b
+aT a
+|{z}
+this is a scalar
+(95)
+Here’s a sanity check: assume a = ei is the unit vector on the i–th axis. Then formula (95) reads:
+projeib = eibi
+(96)
+so the projection only remembers the i–th component of the vector b. It is easy to see that the
+operation (96) can be presented as a matrix multiplying the vector b, speciﬁcally:
+Pib = eibi
+where
+Pi =
+
+
+. . .
+. . .
+0
+. . .
+. . .
+. . .
+. . .
+0
+. . .
+. . .
+0
+0
+1
+0
+0
+. . .
+. . .
+0
+. . .
+. . .
+. . .
+. . .
+0
+. . .
+. . .
+
+
+(97)
+42
+with the unique 1 being at the intersection of row i and column i, and 0’s everywhere else. The
+projection onto an arbitrary vector a can be described by a similar matrix, speciﬁcally:
+Pab = a aT b
+aT a
+where
+Pa = aaT
+aT a
+(98)
+Indeed, since a is an n × 1 vector, the numerator of Pa is an n × n matrix, and the denominator is
+a 1 × 1 matrix, i.e. a scalar. This all ﬁts into the following principle:
+Fact 9. For any subspace V ⊂Rn, there exists an n × n matrix PV such that:
+projV b = PV b
+(99)
+for any vector b ∈Rn.
+So all orthogonal projections are given by left multiplication with a suitable matrix (unoriginally
+called a “projection matrix”). The task for us now is to compute the matrix corresponding to a
+given projection, and we will do it in the special case when:
+V = C(A)
+for an n×m matrix A. In fact, this does not represent any restriction on the subspace V , since any
+subspace can be written as the column space of a suitably chosen matrix: just take basis vectors
+of the subspace and put them next to each other in a matrix. So given b ∈Rn, we are looking for:
+p ∈C(A)
+such that
+(b −p) ⊥C(A)
+But p ∈C(A) precisely means:
+p = Av
+(100)
+for some m × 1 vector v. Moreover, the condition (b −p) ⊥C(A) is equivalent to:
+AT (b −p) = 0
+(101)
+because we know from the previous Lecture that a vector being orthogonal to the column space of
+A is equivalent to it lying in the left nullspace of A. Combining (100) with (101) gives us:
+AT (b −Av) = 0
+⇒
+AT Av = AT b
+Therefore, we may solve for v = (AT A)−1AT b, and by combining this with (100) we obtain the
+following formula for the projection of the vector b onto the subspace C(A):
+projC(A)b = A(AT A)−1AT b
+(102)
+Therefore, we conclude that the n × n projection matrix that Fact 9 predicted gives rise to the
+projection onto the subspace C(A) is:
+PC(A) = A(AT A)−1AT
+(103)
+43
+If the case m = 1, i.e. A is a single n × 1 vector, formula (103) is equivalent to (98). The m × m
+matrix S = AT A which appears in (103) is symmetric, but we need it to be invertible in order for
+the formulas presented above to hold. Luckily for us, we have the following fact:
+if the columns of A are independent, then S = AT A is invertible
+(104)
+When working with formulas such as (102) or (103), note that the equality:
+(AT A)−1 ̸= A−1(AT )−1
+does not hold in general, because when A is a rectangular matrix, its inverse is not well-deﬁned.
+Let’s do an example. Suppose we are in n = 3 dimensional space, and we want to compute the
+projection onto the plane V spanned by the vectors:
+
+
+2
+0
+−1
+
+
+and
+
+
+−1
+1
+0
+
+
+(105)
+First of all, let’s make sure that these vectors are linearly independent (if one were a linear combi-
+nation of the other, we could just throw it out). Then, we put the vectors together in a matrix:
+A =
+
+
+2
+−1
+0
+1
+−1
+0
+
+
+As we saw in (103), an important role is played by the symmetric matrix:
+S = AT A =
+ 2
+0
+−1
+−1
+1
+0
+ 
+
+2
+−1
+0
+1
+−1
+0
+
+=
+ 5
+−2
+−2
+2
+
+whose inverse (this matrix is invertible because the vectors (105) are independent) is given by:
+S−1 = 1
+6
+2
+2
+2
+5
+
+Then formula (103) for the projection matrix onto the subspace spanned by the vectors (105) is:
+PV =
+
+
+2
+−1
+0
+1
+−1
+0
+
+1
+6
+2
+2
+2
+5
+  2
+0
+−1
+−1
+1
+0
+
+= 1
+6
+
+
+5
+−1
+−2
+−1
+5
+−2
+−2
+−2
+2
+
+
+(106)
+We conclude that the projection of any vector
+
+
+x
+y
+z
+
+onto the given 2-dimensional plane is:
+PV
+
+
+x
+y
+z
+
+= 1
+6
+
+
+5x −y −2z
+−x + 5y −2z
+−2x −2y + 2z
+
+
+44
+Remark. Projection matrices are special in that they satisfy the equation:
+PV PV = PV
+for any subspace V . This corresponds to the geometric fact that the projection of a projection is
+the projection itself. Check that this equation holds for the speciﬁc example (106).
+45

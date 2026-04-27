@@ -1,0 +1,404 @@
+Lecture 1 (February 17)
+
+Reading: Sections 1.1–2.1
+Viewing: Lecture 1
+In 18.02, you learned how to solve systems of linear equations:
+
+
+
+
+
+2x −3y = 0
+x + y = 5
+2y = 4
+(1)
+The high-school way to solve this system is to take y out from the last equation (since it is the
+more manageable of the three) and get y = 2. Then we plug this answer into either the ﬁrst or the
+second equation, and we get x = 3. So the solution is (x, y) = (3, 2).
+There’s also a geometric way to think about the system of equations (1). Linear equations, such
+as 2x −3y = 0, x + y = 5 or 2y = 4, are equations of lines in the xy–plane. Speciﬁcally, they
+correspond to the blue, orange and green lines in the picture below:
+2
+4
+6
+-2
+2
+4
+6
+Asking for a solution to the system of equations (1) is the same thing as asking for a point (x, y)
+which lies on all three of these lines, or in other words, the intersection of these lines. It’s easy to
+see from the picture above that this point is (x, y) = (3, 2).
+Another point of view on the system of equations (1) is to rewrite it in matrix form:
+
+
+2
+−3
+1
+1
+0
+2
+
+
+x
+y
+
+=
+
+
+0
+5
+4
+
+
+(2)
+In this way, you solve for the quantity
+x
+y
+
+, which is thought of as the point (x, y) in the plane.
+There are a number of ways to solve matrix equations like (2), the most general form of which is:
+Av = b
+(3)
+where A is an m × n matrix, v is an n × 1 vector, and b is a m × 1 vector. In situations such
+as (3), usually A and b are given as part of the problem, while v is the unknown you have to solve for.
+2
+Before we delve into ways to solve (3), let us say a thing or two about vectors. We think of:
+v =
+
+
+v1
+v2
+...
+vn
+
+
+(4)
+as a point in n–dimensional space. For example, 2–dimensional space is a plane (such as the surface
+of the paper, or a blackboard), while 3–dimensional space, is... well, ordinary space. Consider the
+following operations:
+• given two vectors v =
+
+
+v1
+v2
+...
+vn
+
+and w =
+
+
+w1
+w2
+...
+wn
+
+, you may add them componentwise:
+v + w =
+
+
+v1 + w1
+v2 + w2
+...
+vn + wn
+
+
+• given a vector v and a number α (called scalar), we can multiply them together:
+αv =
+
+
+αv1
+αv2
+...
+αvn
+
+
+Combining the two operations above, we will say a linear combination of two vectors v and w
+is any expression of the form:
+αv + βw =
+
+
+αv1 + βw1
+αv2 + βw2
+...
+αvn + βwn
+
+
+The numbers α and β are called the coeﬃcients of the linear combination. So we’ve seen the
+deﬁnition, but what does the concept of “linear combination” actually mean? Let’s take an easy
+example:
+v =
+
+
+1
+0
+0
+
+
+w =
+
+
+0
+0
+1
+
+
+⇒
+linear combinations are αv + βw =
+
+
+α
+0
+β
+
+
+As α and β run over all possible numbers, the right-hand side runs over all vectors in the xz–plane
+(which in turn is a subset of xyz–space), since the y–component of such vectors is 0. Given that
+v is the unit vector on the x–axis and w is the unit vector on the z–axis, the principle here is the
+following.
+3
+Fact 1. Almost 1 any two n×1 vectors v and w trace out a 2–dimensional plane in n–dimensional
+space. Any vector in the aforementioned plane is a linear combination of v and w, and vice-versa.
+Example 1. Let’s draw the plane traced out by the vectors v =
+
+
+2
+0
+−1
+
+and w =
+
+
+0
+3
+1
+
+.
+To do this, represent v and w as the points (2, 0, −1) and (0, 3, 1), respectively, in 3–dimensional
+space. Then trace out the lines passing through the origin and either the point v or w. Finally,
+trace out the 2–plane spanned by these two lines.
+We can use the language of linear combinations to make sense of systems of equations such as (3).
+Let’s look at the speciﬁc example (2). Because:
+x
+y
+
+=
+x
+0
+
++
+0
+y
+
+= x ·
+1
+0
+
++ y ·
+0
+1
+
+then formula (2) reads:
+
+
+2
+−3
+1
+1
+0
+2
+
+
+x
+y
+
+= x ·
+
+
+2
+−3
+1
+1
+0
+2
+
+
+1
+0
+
++ y ·
+
+
+2
+−3
+1
+1
+0
+2
+
+
+0
+1
+
+= x ·
+
+
+2
+1
+0
+
++ y ·
+
+
+−3
+1
+2
+
+=
+
+
+0
+5
+4
+
+
+Therefore, solving for (x, y) is the same thing as ﬁnding a certain linear combination of the vectors
+
+
+2
+1
+0
+
+and
+
+
+−3
+1
+2
+
+(which are nothing but the columns of the 3×2 matrix in the left-hand side of (2))
+that produces the vector
+
+
+0
+5
+4
+
+. Such a linear combination exists if and only if the latter vector lies
+in the plane spanned out by the former vectors, which is indeed the case in our example. In general:
+Fact 2. The equation Av :=
+
+
+a11
+. . .
+a1n
+...
+...
+...
+am1
+. . .
+amn
+
+
+
+
+v1
+...
+vn
+
+=
+
+
+b1
+...
+bm
+
+=: b is equivalent to:
+v1
+
+
+a11
+...
+am1
+
++ · · · + vn
+
+
+a1n
+...
+amn
+
+=
+
+
+b1
+...
+bm
+
+
+(5)
+In other words, solving the system of equations for v precisely entails ﬁnding out which linear com-
+binations of the columns of the matrix A are equal to the vector b.
+1The word “almost” requires us to exclude the case when v and w are collinear, i.e. on the same line passing
+through the origin; we will discuss this issue further when introducing the notion of linear independence
+4
+There is another operation that one can perform on two vectors, the dot product:
+if v =
+
+
+v1
+...
+vn
+
+
+and
+w =
+
+
+w1
+...
+wn
+
+
+then
+v · w = v1w1 + · · · + vnwn
+VERY IMPORTANT: the dot product of two vectors is a number (a.k.a. scalar). There is no
+“reasonable” way to multiply two vectors in such a way as to obtain a vector (with the notable
+exception of the cross-product for vectors with n = 3 components, but that’s another story).
+The dot product allows us to describe the angle θ between two vectors v and w. Recall that:
+v · w = 0
+means that
+θ = 90◦
+For example, take v =
+−2
+1
+
+and w =
+2
+4
+
+:
+-2
+-1
+1
+2
+1
+2
+3
+4
+The angle between these two vectors is 90◦, and indeed v · w = (−2) · 2 + 1 · 4 = 0. But the dot
+product describes arbitrary angles, not just right angles. The general formula is:
+cos θ =
+v · w
+||v|| ||w||
+(6)
+where the length of a vector is given by:
+||v|| = √v · v =
+q
+v2
+1 + v2
+2 + · · · + v2n
+(7)
+So if you want to compute the angle between two lines, apply formula (6) with v and w being the
+unit (i.e. length 1) vectors corresponding to those lines. Then the formula in question precisely
+says that the cosine of the angle is equal to the dot product of unit vectors.
+5

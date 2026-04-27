@@ -1,0 +1,430 @@
+Lecture 33 (May 14)
+
+Reading: none
+Viewing: none
+Statistics is the sibling of probability, but they diﬀer slightly in their goals. While probability
+anticipates the likelihood of future events, statistics interprets data from past events. Let’s say we
+are performing an experiment that measures a certain quantity. We run the experiment n times
+and we get the following values, called samples:
+x1, . . . , xn
+(305)
+The collection of samples is often called the data set.
+Deﬁnition 29. The mean of the data set (305) is:
+µ = 1
+n(x1 + · · · + xn)
+(306)
+The variance of the data set (305) is:
+Σ =
+1
+n −1
+h
+(x1 −µ)2 + · · · + (xn −µ)2i
+(307)
+The standard deviation is the square root of the variance: σ =
+√
+Σ.
+As n →∞, the quantities (306) and (307) tend to the mean and variance of the underlying proba-
+bility distribution of whatever we’re measuring. For example, if you’re measuring a quantity which
+naturally obeys a normal distribution (e.g. the numeric grades in a large class), then the graph of
+the function “f(x) = number of students who got grade x” will look like a bell curve.
+Remark. You might wonder why we’re using the denominator n −1 in (307) instead of n, which
+might seem much more appropriate from a probability point of view. The discrepancy, namely
+n
+n−1
+is called Bessel’s correction, and we will explain it from the point of view of linear algebra later
+on. It is not so signiﬁcant when n is large, but it makes a diﬀerence when n is small.
+Explicitly, the mean is just measuring the average of the samples in question, while the variance
+is measuring how far the samples are from their mean. These notions can be presented in the
+language of linear algebra, by introducing the vectors:
+o =
+
+
+1
+...
+1
+
+
+and
+x =
+
+
+x1
+...
+xn
+
+
+Then the mean is equal to:
+µ = oT x
+oT o
+(308)
+and thus oµ can be interpreted as the projection of the vector of samples x onto the vector o.
+Meanwhile, the variance is:
+Σ = ||x −oµ||2
+n −1
+= ||Px||2
+n −1
+(309)
+118
+where P = I −ooT
+oT o is the projection matrix onto the orthogonal complement to o. This orthogonal
+complement is an n −1 dimensional vector space, and indeed we have:
+P =
+
+
+n−1
+n
+. . .
+−1
+n
+...
+...
+...
+−1
+n
+. . .
+n−1
+n
+
+
+(310)
+It is elementary to show that the diagonalization of P is:
+P = QDQT ,
+where Q is orthogonal and D =
+
+
+1
+. . .
+0
+0
+...
+...
+...
+...
+0
+. . .
+1
+0
+0
+. . .
+0
+0
+
+
+(311)
+Therefore, if the n entries of the sample vector x are drawn from a normal probability distribution
+with mean 0 and variance 1, then so will the entries of the vector y = QT x (this is because
+multiplying by orthogonal matrices does not change length). But we have:
+||Px||2 = ||QDQT x||2 = ||Dy||2 = y2
+1 + · · · + y2
+n−1
+(312)
+and so the variance of (312) is n −1. We have just shown that the variance of the quantity ||Px||2
+is n−1
+n
+times that of the quantity ||x||2, and Bessel’s correction is simply a way to correct for this.
+Now assume we have two data sets: x1, . . . , xn and y1, . . . , yn (say age and height) and we want to
+see how correlated they are. As in the case of probability, the appropriate notion is the covariance:
+Σxy =
+1
+n −1
+h
+(x1 −µ)(y1 −ν) + · · · + (xn −µ)(yn −ν)
+i
+(313)
+where µ and ν are the means of the samples x1, . . . , xn and y1, . . . , yn, respectively. Note that Σxx
+is just the variance of the sample set x1, . . . , xn, so the reason why we use the denominator n −1
+instead of n in (313) is still Bessel’s correction, as explained above. In terms of vectors:
+x =
+
+
+x1
+...
+xn
+
+
+and
+y =
+
+
+y1
+...
+yn
+
+
+the covariance takes the form:
+Σxy = xT Py
+n −1
+(314)
+since P 2 = P, P T = P (being a projection matrix) and Px =
+
+
+x1 −µ
+...
+xn −µ
+
+, Py =
+
+
+y1 −ν
+...
+yn −ν
+
+. Also:
+|Σxy| ≤
+p
+ΣxxΣyy
+(315)
+just like in the case of probability. The covariance is greatest (or lowest) when x and y are the
+most correlated (anti-correlated). If the two data sets are independent, then you would expect the
+119
+covariance to be very close to 0, and actually tend to 0 as you take more and more samples n →∞.
+Finally, assume we have m data sets, so let’s put them in an n × m matrix:
+A =
+
+
+x1
+y1
+z1
+. . .
+...
+...
+...
+...
+xn
+yn
+zn
+. . .
+
+
+If the x’s, y’s, z’s ... have means µ, ν, ξ ..., then:
+PA =
+
+
+x1 −µ
+y1 −ν
+z1 −ξ
+. . .
+...
+...
+...
+...
+xn −µ
+yn −ν
+zn −ξ
+. . .
+
+
+(316)
+The covariance matrix of the data sets is the m × m matrix deﬁned by:
+K =
+
+
+Σxx
+Σxy
+Σxz
+. . .
+Σyx
+Σyy
+Σyz
+. . .
+Σzx
+Σzy
+Σzz
+. . .
+...
+...
+...
+...
+
+
+(317)
+and is given by the formula:
+K = AT PA
+n −1
+(318)
+To see this, just note for instance that the (1, 2) entry of the matrix identity (318) is precisely (314).
+Principal component analysis (PCA) involves diagonalizing the covariance matrix. If:
+K = QDQT
+with Q orthogonal and D diagonal (with positive diagonal entries) then (318) reads:
+QDQT = AT PA
+n −1
+⇒
+D = (AQ)T P(AQ)
+n −1
+This means that the data set B = AQ (whose columns are linear combinations of the constituent
+data sets of A) has diagonal covariance. Therefore, the constituent data sets of B are mutually
+uncorrelated. Moreover, if the i–th diagonal entry of D is the largest (respectively smallest) then
+the i–th constituent data set of B has the largest (respectively smallest) variance. Therefore, this
+approach allows us to isolate those linear combinations in a collection of data sets which produce
+the most variance from those which produce the least variance. For example, consider the plot:
+of two data sets: the entries of x =
+
+
+x1
+...
+x5
+
+are on the horizontal axis and the entries of y =
+
+
+x1
+...
+x5
+
+
+are on the vertical axis. Explicitly, they are given by
+x =
+
+
+2
+3
+4
+7
+8
+
+
+and
+y =
+
+
+4
+3
+5
+6
+9
+
+
+120
+0
+2
+4
+6
+8
+10
+0
+2
+4
+6
+8
+10
+and suppose we wish to compute their covariance matrix, and to apply PCA to them (i.e. to ﬁnd
+linear combinations of the data sets which are mutually uncorrelated, and to compute the variance
+of those). Start by constructing the matrix:
+A =
+
+x
+y
+
+=
+
+
+2
+4
+3
+3
+4
+5
+7
+6
+8
+9
+
+
+Then compute:
+PA = 1
+5
+
+
+−14
+−7
+−9
+−12
+−4
+−2
+11
+3
+16
+18
+
+
+(319)
+Then the covariance matrix is given by formula (318):
+K = 1
+20
+134
+107
+107
+106
+
+You could perform PCA by diagonalizing the matrix K, or you could achieve the same result by
+instead computing the SVD of the matrix PA. Let’s opt for the latter:
+PA = UΣV T
+where
+Σ =
+
+
+q
+24 + 1
+5
+√
+11645
+0
+0
+q
+24 −1
+5
+√
+11645
+0
+0
+0
+0
+0
+0
+
+
+and U and V are orthogonal matrices. Then the covariance matrix is given by:
+K = V ΣT UT UΣV T
+5 −1
+= V
+6 + 1
+20
+√
+11645
+0
+0
+6 −1
+20
+√
+11645
+
+V T
+(320)
+121
+The meaning of this is the following: the entries of the 2 × 2 orthogonal matrix V teach you how
+to construct mutually independent combinations of the data sets x and y. Explicitly, if:
+V =
+v11
+v12
+v21
+v22
+
+then the data sets:
+
+x′
+y′ 
+=
+
+x
+y
+
+V
+⇔
+(
+x′ = v11x + v21y
+y′ = v12x + v22y
+are mutually uncorrelated. Moreover, the variances of x′ and y′ are the two numbers on the di-
+agonal of (320), and numerically they are roughly equal to 11.39 and 0.6. This implies that the
+linear combination y′ of our two data sets has very little variance, and so it is roughly constant.
+Meanwhile, the linear combination x′ is very “noisy”, since it has rather high variance.
+122

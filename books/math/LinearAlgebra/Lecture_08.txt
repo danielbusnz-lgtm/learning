@@ -1,0 +1,380 @@
+Lecture 8 (March 5)
+
+Reading: Section 3.3
+Viewing: Lecture 8
+We will now put together the ideas of the previous two lectures in order to ﬁnd the complete
+(a.k.a. general) solution v of the system:
+Av = b
+(63)
+for any m × n matrix A. First of all, as we have seen in Fact 5, there are no solutions if the m × 1
+vector b is not in the column space C(A). So we henceforth assume that b ∈C(A), which is just
+saying that there exists a particular solution:
+Avparticular = b
+(64)
+This n × 1 vector vparticular is a solution of (63), but it may not be the only one. In fact, for any
+other solution v of the original system (63), we may subtract the two equations above and obtain:
+A(v −vparticular) = 0
+So the diﬀerence v −vparticular lies in the nullspace of A. This immediately leads to the following.
+Fact 6. The general solution of the system (63) is given by:
+vgeneral = vparticular + wgeneral
+(65)
+where:
+• vparticular is a particular solution of (63), which exists if and only if b ∈C(A)
+• wgeneral is any element of N(A), i.e. the general solution to Awgeneral = 0
+The fact above is a general mathematical feature of linear equations. For example, it also holds in
+the theory of linear ordinary diﬀerential equations, as you can see in 18.03.
+Reduced row echelon forms allow you to deal with both bullets in Fact 6 at the same time. Let me
+show you how to do this in an example. Consider the system:
+
+
+2
+6
+2
+2
+−1
+2
+6
+1
+−1
+2
+3
+9
+−1
+−9
+1
+
+
+
+
+x1
+x2
+x3
+x4
+x5
+
+
+=
+
+
+−7
+6
+−6
+
+
+(66)
+Let us now apply Gauss-Jordan elimination to the augmented matrix of the system:
+
+
+2
+6
+2
+2
+−1
+−7
+2
+6
+1
+−1
+2
+6
+3
+9
+−1
+−9
+1
+−6
+
+
+⇝
+
+
+1
+3
+0
+−2
+0
+−3
+0
+0
+1
+3
+0
+2
+0
+0
+0
+0
+1
+5
+
+
+28
+(I will leave you the joy of going through all the steps in Gauss-Jordan elimination above, as you
+did in Lecture 2). The matrix on the right is in reduced row echelon form (the pivots are boxed)
+and it corresponds to the system:
+
+
+1
+3
+0
+−2
+0
+0
+0
+1
+3
+0
+0
+0
+0
+0
+1
+
+
+
+
+x1
+x2
+x3
+x4
+x5
+
+
+=
+
+
+−3
+2
+5
+
+
+(67)
+By Fact 3, ﬁnding the general solution of the system (66) is equivalent to ﬁnding the solution of
+the system (67) (note: the right-hand sides of (66) and (67) are diﬀerent, because the right-most
+column must also undergo Gauss-Jordan elimination together with the rest of the matrix) so let us
+solve the latter. To do so, let us look at the coeﬃcient matrix:
+R =
+
+
+1
+3
+0
+−2
+0
+0
+0
+1
+3
+0
+0
+0
+0
+0
+1
+
+
+and identify the pivot columns (these are columns 1,3 and 5 in the example at hand) and the free
+columns (these are columns 2 and 4 in the example at hand). Therefore, the pivot variables are
+x1, x3, x5 and the free variables are x2, x4. Now we make the following observation:
+For any choice of free variables x2, x4 there exists a unique choice
+of pivot variables x1, x3, x5 which solve the system (67)
+So we keep x2, x4 as arbitrary numbers, and solve for x1, x3, x5 in (67) by back substitution:
+
+
+
+
+
+x1 + 3x2 −2x4 = −3
+x3 + 3x4 = 2
+x5 = 5
+⇝
+
+
+
+
+
+x1 = −3 −3x2 + 2x4
+x3 = 2 −3x4
+x5 = 5
+So we conclude that the general solution to the system (67) (which is the same as the general
+solution to the system (66), by the very nature of Gauss-Jordan elimination) is:
+
+
+x1
+x2
+x3
+x4
+x5
+
+
+general
+=
+
+
+−3 −3a + 2b
+a
+2 −3b
+b
+5
+
+
+(68)
+(we relabeled x2 = a and x4 = b to emphasize the fact that they are arbitrary real numbers).
+So what if you didn’t need the general solution of (66) and you were satisﬁed with a particular
+solution? One easy way to get a particular solution is to just plug in a = b = 0, thus obtaining:
+
+
+x1
+x2
+x3
+x4
+x5
+
+
+particular
+=
+
+
+−3
+0
+2
+0
+5
+
+
+(69)
+29
+You could also have gotten this by setting all the free variables equal to 0 in (67) and solving for
+the pivot variables by using back substitution. Similarly, if you subtract the particular solution
+(69) from the general solution (68), you get:
+
+
+x1
+x2
+x3
+x4
+x5
+
+
+general
+−
+
+
+x1
+x2
+x3
+x4
+x5
+
+
+particular
+=
+
+
+−3a + 2b
+a
+−3b
+b
+0
+
+
+(70)
+The right-hand side is just the general element of the nullspace of the matrix R.
+Let us just mention one thing which could have gone wrong in the procedure above, and how to
+remedy it. It could have been that the reduced row echelon form of the coeﬃcient matrix had a full
+row of zeroes. For example, suppose that instead of the system (67) we would have encountered:
+
+
+1
+3
+0
+−2
+0
+0
+0
+1
+3
+0
+0
+0
+0
+0
+0
+
+
+
+
+x1
+x2
+x3
+x4
+x5
+
+
+=
+
+
+−3
+2
+5
+
+
+(71)
+(when doing elimination, it is customary to put all the zero rows at the very bottom of the matrix,
+which we can achieve by suitable row exchanges). It is easy to see that the system above has no
+solutions, because equating the third rows of equality (71) to each other would force us to have
+0 = 5, which is impossible. However, if the system were instead:
+
+
+1
+3
+0
+−2
+0
+0
+0
+1
+3
+0
+0
+0
+0
+0
+0
+
+
+
+
+x1
+x2
+x3
+x4
+x5
+
+
+=
+
+
+−3
+2
+0
+
+
+(72)
+then we do have solutions. To ﬁnd these solutions, just throw out the zero row at the bottom of
+the equality (72) and proceed as we did on the previous page. The upshot is that for any matrix
+R in reduced row echelon form:
+a system Rv = c has solutions if and only if the vector
+c has entry 0 corresponding to every full row of zeroes of R
+Deﬁnition 7. The rank r of a matrix A is equal to the number of its pivot columns.
+Here and throughout, the pivot columns of a matrix A refer to those columns where the pivots lie
+in the (reduced) row echelon form of A.
+If the matrix A is m × n, then the rank satiﬁes the inequality:
+r ≤min(m, n)
+since the number of pivots cannot surpass either the number of rows or of columns. We say that:
+30
+• A has full row rank if r = m. In this case, the column space of A is as big as possible, i.e.
+C(A) = Rm, and the system Av = b has at least one solution v for any b.
+• A has full column rank if r = n. In this case, the nullspace of A is as small as possible, i.e.
+N(A) = 0, and the system Av = b has at most one solution v for any b.
+31

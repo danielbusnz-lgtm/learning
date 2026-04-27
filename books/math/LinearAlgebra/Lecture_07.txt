@@ -1,0 +1,247 @@
+Lecture 7 (March 3)
+
+Reading: Section 3.2
+Viewing: Lectures 6-7
+Consider the subspace S ⊂R3 spanned by the vectors:
+
+
+1
+1
+−2
+
+
+and
+
+
+5
+−2
+−3
+
+
+(58)
+These two vectors are not on the same line (passing through the origin) so we conclude that S is
+a plane. As such, S is cut out by a single equation in the plane, and it is not hard to guess what
+this equation is:
+S =
+
+
+
+
+
+x
+y
+z
+
+such that x + y + z = 0
+
+
+
+(59)
+Indeed, both vectors in (58) have the property that the sum of their entries is 0. Moreover, any
+linear combination of those two vectors has the property that the sum of its entries is 0, and this
+allows us to conclude (59). A more linear algebra way to say this is to consider the 1 × 3 matrix:
+A =
+
+1
+1
+1
+
+(the entries of A are precisely the coeﬃcients of x, y and z in the equation of the plane (59)) and
+to observe the fact that:
+A
+
+
+1
+1
+−2
+
+=
+
+0
+
+and
+A
+
+
+5
+−2
+−3
+
+=
+
+0
+
+Moreover, taking appropriate linear combinations of these two equations allows us to conclude that:
+A
+
+α
+
+
+1
+1
+−2
+
++ β
+
+
+5
+−2
+−3
+
+
+
+=
+
+0
+
+for any scalars α and β. We can summarize the formula above by saying that the plane S is pre-
+cisely what people call the nullspace of A, as in the following deﬁnition.
+Deﬁnition 6. The nullspace of an m × n matrix A is the subspace:
+N(A) ⊂Rn
+(60)
+consisting of those vectors v ∈Rn such that Av = 0.
+Remark. A little quirk concerning our notation: the right-hand side of the equation Av = 0 should
+be an m×1 column vector, speciﬁcally the zero vector
+
+
+0
+...
+0
+
+. People usually abbreviate the zero vector
+by using the notation “ 0”, although it is still technically a vector.
+25
+The fact that the nullspace of the matrix A satisﬁes the requirements (52) and (53) of being a
+subspace follows from the easy to prove relations:
+Av = 0 and Aw = 0 ⇒A(v + w) = 0
+Av = 0 and α ∈R
+⇒
+A(αv) = 0
+So computing the nullspace of a matrix A boils down to solving the equation Av = 0. However,
+many matrices have the same nullspace. For example, if:
+A = LR
+(61)
+where L is an invertible matrix (such as the product of elimination/permutation/diagonal matrices
+that you encounter in Gaussian and Gauss-Jordan elimination, hint-hint) then:
+N(A) = N(R)
+(62)
+which is essentially saying that:
+Av = LRv = 0
+is equivalent to
+Rv = 0
+(the equivalence is showed by multiplying on the left with L−1). Gauss-Jordan elimination gives
+us a recipe for writing A in the form (61), where R is in reduced row echelon form, i.e.:
+• the pivots are all 1
+• the pivots go to the right as we read the rows from top to bottom
+• all the entries above a pivot are zeroes
+For example, the following matrix is in reduced row echelon form:
+R =
+ 1
+3
+0
+7
+0
+0
+1
+2
+
+(as usual, the pivots are in boxes). A column which has a pivot is called a (unsurprisingly) pivot
+column and all other columns are called free columns. In the example of R above, the ﬁrst and
+third are pivot columns, and the second and fourth are free columns. Explicitly, we have:
+R
+
+
+a
+b
+c
+d
+
+= 0
+means that
+a + 3b + 7d
+c + 2d
+
+=
+0
+0
+
+i.e.
+(
+a = −3b −7d
+c = −2d
+So here’s the catch: for any choice of the numbers b and d, the equalities above tell you what a
+and c have to be in order for the vector:
+
+
+a
+b
+c
+d
+
+
+26
+to lie in the nullspace of R. Thus, b and d are free variables, and they precisely correspond to
+the free columns of R. We conclude that the nullspace of R can be explicitly described as:
+N(R) =
+
+
+
+
+
+
+
+
+
+−3b −7d
+b
+−2d
+d
+
+for all b, d real numbers
+
+
+
+
+
+
+
+The set above is simply a plane in 4-dimensional space. If you want to describe this plane as being
+spanned by two vectors, then all you need to do is to assign concrete values to the free variables.
+A reasonable choice is to set (b, d) = (1, 0) or (0, 1), and this implies that:
+N(R) is spanned by the vectors
+
+
+−3
+1
+0
+0
+
+and
+
+
+−7
+0
+−2
+1
+
+
+Therefore, in general, here is the algorithm for computing the nullspace of any m × n matrix A (or
+equivalently, for ﬁnding all solutions to the system of equations Av = 0):
+• Write A in reduced row echelon form, and call the resulting matrix R
+• Identify the pivot columns and the free columns of R; the pivot/free variables will be those xi
+among x1, . . . , xn such that the i–th column of R is a pivot/free column
+• The nullspace of A, which coincides with the nullspace of R, is spanned by those vectors
+(x1, . . . , xn) where a given free variable is 1, all other free variables are 0, and all the pivot
+variables are determined by the free variables and the equations:
+R
+
+
+x1
+...
+xn
+
+= 0
+It is easy to solve for the pivot variables (in terms of the free variables) in the equation above
+by back-substitution, precisely because R is in reduced row echelon form. The aforementioned
+ease is one of the main reasons why people bother with reduced row echelon form in the ﬁrst place.
+27
